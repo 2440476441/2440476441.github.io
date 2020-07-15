@@ -6,25 +6,27 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Hexo博客更改主题与文章编辑 | Hexo</title>
+  <title>JDBC连接MySQL实例 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="更改主题 Hexo给我们提供的默认主题叫landscape，在themes目录可以看到有个叫landscape的文件夹。所有的主题文件都存放在themes文件夹中。 Hexo themes上我们提供了大量的优秀主题，随便点进一个主题可以看到作者为我们提供了下载地址，比如这样：">
+  <meta name="description" content="什么是JDBC Java数据库连接，（Java Database Connectivity，简称JDBC）是Java语言中用来规范客户端程序如何来访问数据库的应用程序接口，提供了诸如查询和更新数据库中数据的方法。JDBC也是Sun Microsystems的商标。我们通常说的JDBC是面向关系型数据库的——百度百科   简单来说JDBC就是负责与数据库建立连接，发送SQL语句，并返回处理结果的应">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo博客更改主题与文章编辑">
-<meta property="og:url" content="http://yoursite.com/2020/07/15/Hexo%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%94%B9%E4%B8%BB%E9%A2%98%E4%B8%8E%E6%96%87%E7%AB%A0%E7%BC%96%E8%BE%91/index.html">
+<meta property="og:title" content="JDBC连接MySQL实例">
+<meta property="og:url" content="http://yoursite.com/2020/07/15/JDBC%E8%BF%9E%E6%8E%A5MySQL%E5%AE%9E%E4%BE%8B/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="更改主题 Hexo给我们提供的默认主题叫landscape，在themes目录可以看到有个叫landscape的文件夹。所有的主题文件都存放在themes文件夹中。 Hexo themes上我们提供了大量的优秀主题，随便点进一个主题可以看到作者为我们提供了下载地址，比如这样：">
+<meta property="og:description" content="什么是JDBC Java数据库连接，（Java Database Connectivity，简称JDBC）是Java语言中用来规范客户端程序如何来访问数据库的应用程序接口，提供了诸如查询和更新数据库中数据的方法。JDBC也是Sun Microsystems的商标。我们通常说的JDBC是面向关系型数据库的——百度百科   简单来说JDBC就是负责与数据库建立连接，发送SQL语句，并返回处理结果的应">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://yoursite.com/2020/07/15/Hexo%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%94%B9%E4%B8%BB%E9%A2%98%E4%B8%8E%E6%96%87%E7%AB%A0%E7%BC%96%E8%BE%91/%E5%9B%BE1.PNG">
-<meta property="og:image" content="http://yoursite.com/2020/07/15/Hexo%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%94%B9%E4%B8%BB%E9%A2%98%E4%B8%8E%E6%96%87%E7%AB%A0%E7%BC%96%E8%BE%91/%E5%9B%BE2.PNG">
-<meta property="og:image" content="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2223594911,2600905147&fm=26&gp=0.jpg">
-<meta property="article:published_time" content="2020-07-14T23:27:15.000Z">
-<meta property="article:modified_time" content="2020-07-15T03:07:17.917Z">
+<meta property="og:image" content="http://yoursite.com/2020/07/15/JDBC%E8%BF%9E%E6%8E%A5MySQL%E5%AE%9E%E4%BE%8B/%E5%9B%BE1.PNG">
+<meta property="og:image" content="http://yoursite.com/2020/07/15/JDBC%E8%BF%9E%E6%8E%A5MySQL%E5%AE%9E%E4%BE%8B/%E5%9B%BE2.PNG">
+<meta property="og:image" content="http://yoursite.com/2020/07/15/JDBC%E8%BF%9E%E6%8E%A5MySQL%E5%AE%9E%E4%BE%8B/%E5%9B%BE3.PNG">
+<meta property="og:image" content="http://yoursite.com/2020/07/15/JDBC%E8%BF%9E%E6%8E%A5MySQL%E5%AE%9E%E4%BE%8B/%E5%9B%BE4.PNG">
+<meta property="og:image" content="http://yoursite.com/2020/07/15/JDBC%E8%BF%9E%E6%8E%A5MySQL%E5%AE%9E%E4%BE%8B/%E5%9B%BE5.PNG">
+<meta property="article:published_time" content="2020-07-15T13:06:55.000Z">
+<meta property="article:modified_time" content="2020-07-15T15:16:20.799Z">
 <meta property="article:author" content="无名小卒鸡大宝">
-<meta property="article:tag" content="Hexo">
-<meta property="article:tag" content="博客搭建">
+<meta property="article:tag" content="JAVA">
+<meta property="article:tag" content="JDBC">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/2020/07/15/Hexo%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%94%B9%E4%B8%BB%E9%A2%98%E4%B8%8E%E6%96%87%E7%AB%A0%E7%BC%96%E8%BE%91/%E5%9B%BE1.PNG">
+<meta name="twitter:image" content="http://yoursite.com/2020/07/15/JDBC%E8%BF%9E%E6%8E%A5MySQL%E5%AE%9E%E4%BE%8B/%E5%9B%BE1.PNG">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -157,20 +159,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Hexo博客更改主题与文章编辑" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-JDBC连接MySQL实例" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Hexo博客更改主题与文章编辑
+      JDBC连接MySQL实例
     </h1>
   
 
         
-        <a href="/2020/07/15/Hexo%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%94%B9%E4%B8%BB%E9%A2%98%E4%B8%8E%E6%96%87%E7%AB%A0%E7%BC%96%E8%BE%91/" class="archive-article-date">
-  	<time datetime="2020-07-14T23:27:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-15</time>
+        <a href="/2020/07/15/JDBC%E8%BF%9E%E6%8E%A5MySQL%E5%AE%9E%E4%BE%8B/" class="archive-article-date">
+  	<time datetime="2020-07-15T13:06:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-15</time>
 </a>
         
       </header>
@@ -178,23 +180,64 @@
     <div class="article-entry" itemprop="articleBody">
       
         <hr>
-<h2 id="更改主题"><a href="#更改主题" class="headerlink" title="更改主题"></a>更改主题</h2><ul>
-<li>Hexo给我们提供的默认主题叫landscape，在themes目录可以看到有个叫landscape的文件夹。所有的主题文件都存放在themes文件夹中。</li>
-<li><a href="https://hexo.io/themes/" target="_blank" rel="noopener">Hexo themes</a>上我们提供了大量的优秀主题，随便点进一个主题可以看到作者为我们提供了下载地址，比如这样：<br><img src="/2020/07/15/Hexo%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%94%B9%E4%B8%BB%E9%A2%98%E4%B8%8E%E6%96%87%E7%AB%A0%E7%BC%96%E8%BE%91/%E5%9B%BE1.PNG" alt="图1">  <a id="more"></a>  
-或者这样：<br><img src="/2020/07/15/Hexo%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%94%B9%E4%B8%BB%E9%A2%98%E4%B8%8E%E6%96%87%E7%AB%A0%E7%BC%96%E8%BE%91/%E5%9B%BE2.PNG" alt="图2">  </li>
-<li>选择好主题后通过cmd进入我们的博客根目录，我这里是blog文件夹,通过clone的方式下载(这里以yilia主题为例)：<br><code>git clone https//github.com/litten/hexo-theme-yilia.git themes/yilia</code><br>litten是作者名,yilia是主题名称。themes/yilia是我们存放主题的目录。  </li>
-<li>下载完成后我们可以看到themes目录已经多出来一个yilia文件夹。为我们的博客更换主题，需要到博客根目录下打开_config.yml文件，利用这个配置文件更改主题。配置文件里有一条属性默认是<code>theme: landscape</code>我们把它换成<code>theme: yilia</code>保存退出。</li>
-<li>cmd中<code>hexo s</code>启动可以看到我们的博客已经成功换装了，如果出现问题可以在启动前<code>hexo g</code>和<code>hexo clean</code>重新生成和清理一下。</li>
-<li>对于我们博客主题的个性化设置，大家可以针对自己的主题自行在网上搜索，在这里就不多赘述了，基本上都是靠themes/主题文件夹下_config.yml文件控制。在这里留下大佬们的文章以供参考：<br><a href="https://blog.csdn.net/King_Ho/article/details/104485154/" target="_blank" rel="noopener">Hexo-yilia主题个性化美化及功能添加</a><br><a href="https://blog.csdn.net/FXHQAQ/article/details/104932353" target="_blank" rel="noopener">Yilia的一些新功能的添加方法</a></li>
+<h2 id="什么是JDBC"><a href="#什么是JDBC" class="headerlink" title="什么是JDBC"></a>什么是JDBC</h2><ul>
+<li>Java数据库连接，（Java Database Connectivity，简称JDBC）是Java语言中用来规范客户端程序如何来访问数据库的应用程序接口，提供了诸如查询和更新数据库中数据的方法。JDBC也是Sun Microsystems的商标。我们通常说的JDBC是面向关系型数据库的——<a href="https://baike.baidu.com/item/Java%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5/1173389?fromtitle=JDBC&fromid=485214&fr=aladdin" target="_blank" rel="noopener">百度百科</a>  </li>
+<li>简单来说JDBC就是负责与数据库建立连接，发送SQL语句，并返回处理结果的应用程序接口。JDBC是直接调用SQL命令的“低级”接口，可以在其之上建立高级接口也就是“用户友好型”接口。  <a id="more"></a>
+</li>
 </ul>
 <hr>
-<h2 id="编辑博客"><a href="#编辑博客" class="headerlink" title="编辑博客"></a>编辑博客</h2><ul>
-<li>我们的Hexo博客是markdown文件，使用命令<code>hexo n 新博客</code>之后，在我们的source/_posts下就生成了.md也就是MarkDown文件。使用工具打开即可以编辑我们的博客了。在这里我使用的是CuteMarked工具可以一边写一边预览效果还是很不错的。另外编辑博客也需要掌握MarkDownd的一些语法，不过很简单，5分钟就能掌握差不多。这里给出大佬的总结<a href="https://www.jianshu.com/p/191d1e21f7ed/" target="_blank" rel="noopener">Markdown基本语法</a>  </li>
-<li>要想使用图片的插入功能，需要先把博客根目录下的_config.yml文件做下修改：<br><code>post_asset_folder: true</code></li>
-<li>引用外部图片的方法，首先到网上随便找一张图，右键复制图片地址，然后使用MarkDown图片引用语法即可：<br>代码示例<code>![随便找的图](https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2223594911,2600905147&amp;fm=26&amp;gp=0.jpg)</code>效果如下图↓<br><img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2223594911,2600905147&fm=26&gp=0.jpg" alt="随便找的图">  </li>
-<li>如果想引用本地图片，需要先下载插件。来到博客目录下输入：<br><code>cnpm install https://github.com/CodeFalling/hexo-asset-image -- save</code><br>注意不要使用<code>cnpm install hexo-asset-image –save</code>这个版本，会出现远程访问无法显示的bug。npm下载不好使的话，请换成cnpm国内的镜像源。  </li>
-<li>下载完成后，我们新建一个博客<code>hexo n 插入本地图片的博客</code>，这时候进到我们的source/_posts文件夹下可以看到系统不仅为我们创建了MarkDown文件，还有一个同名文件夹。我们把要插入的图片放在这个同名文件夹中。</li>
-<li>打开新创建的MarkDown文件，同样使用MarkDown图片引用语法：<br><code>![本地图](插入本地图片的博客/图1.jpg)</code><br>注意（）里写的是相对路径，“插入本地图片的博客”是自动生成的同名文件夹名字。</li>
+<h2 id="连接MSQL数据库"><a href="#连接MSQL数据库" class="headerlink" title="连接MSQL数据库"></a>连接MSQL数据库</h2><ul>
+<li>本文以JDBC连接MySQL数据库为例，详解使用JDBC的过程。用到的工具有eclipse和mysql数据库 </li>
+<li>首先需要到<a href="https://dev.mysql.com/downloads/connector/j/" target="_blank" rel="noopener">MYSQL官网</a>下载驱动jar包↓<br><img src="/2020/07/15/JDBC%E8%BF%9E%E6%8E%A5MySQL%E5%AE%9E%E4%BE%8B/%E5%9B%BE1.PNG" alt="图1"><br>选择“No thanks, just start my download.”直接下载即可。</li>
+<li>解压后获得jar包文件，新建测试项目JDBC_Test,新建一个libs文件夹将驱动jar包放在此处↓<br><img src="/2020/07/15/JDBC%E8%BF%9E%E6%8E%A5MySQL%E5%AE%9E%E4%BE%8B/%E5%9B%BE2.PNG" alt="图2">  </li>
+<li>右键jar包，Build Path——Add to Build Path添加到依赖中。</li>
+<li>接着在我们的数据库中新建数据库jdbctest,新建表usertable（这里我使用了Navicat for MySQL工具）。表结构如下：<br><img src="/2020/07/15/JDBC%E8%BF%9E%E6%8E%A5MySQL%E5%AE%9E%E4%BE%8B/%E5%9B%BE3.PNG" alt="图3"><br>其中UserID设置了自动增长  </li>
+<li>java项目中新建jdbc_test类：<br>写一个插入数据库的方法  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.sql.Connection;</span><br><span class="line"><span class="keyword">import</span> java.sql.DriverManager;</span><br><span class="line"><span class="keyword">import</span> java.sql.SQLException;</span><br><span class="line"><span class="keyword">import</span> java.sql.Statement;</span><br><span class="line"><span class="keyword">import</span> com.mysql.cj.jdbc.Driver;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">jdbc_test</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		insert(<span class="string">"孙悟空"</span>, <span class="string">"123456789"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">insert</span><span class="params">(String username,String phone)</span></span>&#123;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			<span class="comment">//1.注册一个新的驱动</span></span><br><span class="line">			<span class="comment">//如果没有添加依赖，那么这里会报错</span></span><br><span class="line">			DriverManager.registerDriver(<span class="keyword">new</span> Driver());</span><br><span class="line">			<span class="comment">//2.创建URL地址，这里是连接到本地的3306端口，查看Navicat中的连接信息可以看到这些信息</span></span><br><span class="line">			<span class="comment">//jdbctest是数据库名</span></span><br><span class="line">			<span class="comment">//?serverTimezone=UTC&amp;characterEncoding=utf-8可以有效解决因编码格式出现的乱码问题</span></span><br><span class="line">			String url = <span class="string">"jdbc:mysql://localhost:3306/jdbctest?serverTimezone=UTC&amp;characterEncoding=utf-8"</span>;</span><br><span class="line">			<span class="comment">//3.连接数据库的用户名和密码</span></span><br><span class="line">			String user =<span class="string">"root"</span>;</span><br><span class="line">			String password = <span class="string">"123456"</span>;</span><br><span class="line">			<span class="comment">//4.创建连接对象</span></span><br><span class="line">			Connection connextion = DriverManager.getConnection(url, user, password);</span><br><span class="line">			<span class="comment">//5.创建Statement平台对象，这个平台用于执行SQL语句</span></span><br><span class="line">			Statement statement = connextion.createStatement();</span><br><span class="line">			<span class="comment">//6.执行SQL语句，执行成功返回1否则0</span></span><br><span class="line">			<span class="keyword">int</span> flag = statement.executeUpdate(<span class="string">"insert into usertable(userName,phone) values('"</span>+username+<span class="string">"','"</span>+phone+<span class="string">"')"</span>);</span><br><span class="line">			<span class="keyword">if</span>(flag==<span class="number">1</span>)&#123;System.out.println(<span class="string">"插入成功"</span>);&#125;</span><br><span class="line">			<span class="keyword">else</span>&#123;System.out.println(<span class="string">"插入失败"</span>);&#125;</span><br><span class="line">		&#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+效果图：<br><img src="/2020/07/15/JDBC%E8%BF%9E%E6%8E%A5MySQL%E5%AE%9E%E4%BE%8B/%E5%9B%BE4.PNG" alt="图4">  </li>
+</ul>
+<p>查询数据库的方法：<br> </p>
+<pre><code class="java"><span class="keyword">import</span> java.sql.Connection;
+<span class="keyword">import</span> java.sql.DriverManager;
+<span class="keyword">import</span> java.sql.ResultSet;
+<span class="keyword">import</span> java.sql.SQLException;
+<span class="keyword">import</span> java.sql.Statement;
+<span class="keyword">import</span> com.mysql.cj.jdbc.Driver;
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">jdbc_test</span> </span>{
+    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>{
+        select();
+    }
+    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">select</span><span class="params">()</span></span>{
+        <span class="keyword">try</span> {
+            <span class="comment">//1.注册一个新的驱动</span>
+            <span class="comment">//如果没有添加依赖，那么这里会报错</span>
+            DriverManager.registerDriver(<span class="keyword">new</span> Driver());
+            <span class="comment">//2.创建URL地址，这里是连接到本地的3306端口，查看Navicat中的连接信息可以看到这些信息</span>
+            <span class="comment">//jdbctest是数据库名</span>
+            <span class="comment">//?serverTimezone=UTC&amp;characterEncoding=utf-8可以有效解决因编码格式出现的乱码问题</span>
+            String url = <span class="string">"jdbc:mysql://localhost:3306/jdbctest?serverTimezone=UTC&amp;characterEncoding=utf-8"</span>;
+            <span class="comment">//3.连接数据库的用户名和密码</span>
+            String user =<span class="string">"root"</span>;
+            String password = <span class="string">"123456"</span>;
+            <span class="comment">//4.创建连接对象</span>
+            Connection connextion = DriverManager.getConnection(url, user, password);
+            <span class="comment">//5.创建Statement平台对象，这个平台用于执行SQL语句</span>
+            Statement statement = connextion.createStatement();
+            <span class="comment">//6.执行SQL语句，返回值给ResultSet对象</span>
+            ResultSet rs = statement.executeQuery(<span class="string">"select * from usertable"</span>);
+            <span class="comment">//7.这里可以将rs想象成二维数组，rs.next()方法依次指向每一行</span>
+            <span class="comment">//rs.beforeFirst();返回第一行</span>
+            <span class="keyword">while</span>(rs.next()){
+                System.out.println(<span class="string">"ID:"</span>+rs.getInt(<span class="string">"userID"</span>) +<span class="string">",姓名："</span>+ rs.getString(<span class="string">"username"</span>));
+            }
+        } <span class="keyword">catch</span> (SQLException e) {
+            e.printStackTrace();
+        }
+    }    
+}</code></pre>
+<p>效果图：<br><img src="/2020/07/15/JDBC%E8%BF%9E%E6%8E%A5MySQL%E5%AE%9E%E4%BE%8B/%E5%9B%BE5.PNG" alt="图5">  </p>
+<h2 id="PS"><a href="#PS" class="headerlink" title="PS"></a>PS</h2><ul>
+<li>文章到这里就基本就展示了JDBC+MySQL的用法，需要注意的是不同版本的MySQL和驱动jar包可能存在不兼容的情况，我这里使用的版本是MySQL8.0和8.0.19版本的jar包实测可用</li>
 </ul>
 
       
@@ -230,11 +273,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hexo</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JAVA</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">博客搭建</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JDBC</a>
         		</li>
       		
 		</ul>
@@ -290,7 +333,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/07/15/Hexo%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%94%B9%E4%B8%BB%E9%A2%98%E4%B8%8E%E6%96%87%E7%AB%A0%E7%BC%96%E8%BE%91/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/07/15/JDBC%E8%BF%9E%E6%8E%A5MySQL%E5%AE%9E%E4%BE%8B/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -304,18 +347,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/07/15/JDBC%E8%BF%9E%E6%8E%A5MySQL%E5%AE%9E%E4%BE%8B/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          JDBC连接MySQL实例
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/07/14/GitHub-Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">GitHub+Hexo搭建个人博客</div>
+    <a href="/2020/07/15/Hexo%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%94%B9%E4%B8%BB%E9%A2%98%E4%B8%8E%E6%96%87%E7%AB%A0%E7%BC%96%E8%BE%91/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hexo博客更改主题与文章编辑</div>
       <i class="icon-circle-right"></i>
     </a>
   
