@@ -6,15 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | Hexo</title>
+  <title>深入理解MVC之Dao层 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="一、MVC开发模式的优点： 提高JavaWeb开发的代码复用性，避免了重复性开发 有效帮助开发人员实现业务中【事务管理】二、MVC开发角色组成： C：controller，控制层 M：model，业务模型层，完成业务处理1.dao层：直接操作数据库2.service层：调用dao层完成业务实现，负责管理所调用的dao层的【事务管理】 V：view，视图层，将处理结果写入到响应包——JSP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深入理解MVC之Dao层">
+<meta property="og:url" content="http://yoursite.com/2020/07/16/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3MVC%E4%B9%8BDao%E5%B1%82/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一、MVC开发模式的优点： 提高JavaWeb开发的代码复用性，避免了重复性开发 有效帮助开发人员实现业务中【事务管理】二、MVC开发角色组成： C：controller，控制层 M：model，业务模型层，完成业务处理1.dao层：直接操作数据库2.service层：调用dao层完成业务实现，负责管理所调用的dao层的【事务管理】 V：view，视图层，将处理结果写入到响应包——JSP">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/2020/07/16/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3MVC%E4%B9%8BDao%E5%B1%82/%E5%9B%BE1.PNG">
+<meta property="article:published_time" content="2020-07-16T10:21:29.000Z">
+<meta property="article:modified_time" content="2020-07-16T10:47:17.046Z">
 <meta property="article:author" content="无名小卒鸡大宝">
+<meta property="article:tag" content="JAVA">
+<meta property="article:tag" content="MVC">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/07/16/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3MVC%E4%B9%8BDao%E5%B1%82/%E5%9B%BE1.PNG">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -147,36 +155,80 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-深入理解MVC之Dao层" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/07/16/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3MVC%E4%B9%8BDao%E5%B1%82/" class="archive-article-date">
-  	<time datetime="2020-07-16T10:21:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-16</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/07/16/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3MVC%E4%B9%8BDao%E5%B1%82/">深入理解MVC之Dao层</a>
+    <h1 class="article-title" itemprop="name">
+      深入理解MVC之Dao层
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2020/07/16/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3MVC%E4%B9%8BDao%E5%B1%82/" class="archive-article-date">
+  	<time datetime="2020-07-16T10:21:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、MVC开发模式的优点："><a href="#一、MVC开发模式的优点：" class="headerlink" title="一、MVC开发模式的优点："></a>一、MVC开发模式的优点：</h2><ul>
+<li>提高JavaWeb开发的代码复用性，避免了重复性开发</li>
+<li>有效帮助开发人员实现业务中【事务管理】<h2 id="二、MVC开发角色组成："><a href="#二、MVC开发角色组成：" class="headerlink" title="二、MVC开发角色组成："></a>二、MVC开发角色组成：</h2></li>
+<li>C：controller，控制层</li>
+<li>M：model，业务模型层，完成业务处理<br>1.dao层：直接操作数据库<br>2.service层：调用dao层完成业务实现，负责管理所调用的dao层的【事务管理】</li>
+<li>V：view，视图层，将处理结果写入到响应包——JSP<a id="more"></a>
+<h2 id="三、项目编写"><a href="#三、项目编写" class="headerlink" title="三、项目编写"></a>三、项目编写</h2></li>
+<li>先设计数据库</li>
+<li>然后实体类model，entity，bean，javabean</li>
+<li>持久层dao</li>
+<li>业务逻辑service</li>
+<li>控制器controller，servlet，action</li>
+<li>视图view  <h2 id="四、Dao层的作用："><a href="#四、Dao层的作用：" class="headerlink" title="四、Dao层的作用："></a>四、Dao层的作用：</h2></li>
+<li>在实际的业务处理过程中，往往需要多次的数据库访问。这些访问的性质往往是相同的，采用Dao层可以将数据库的访问进行封装，避进行重复性的数据库访问开<br>发操作。同时降低了维护成本。<br><img src="/2020/07/16/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3MVC%E4%B9%8BDao%E5%B1%82/%E5%9B%BE1.PNG" alt></li>
+<li>实际上按性质划分只需要进行以下三种数据库操作：</li>
+<li>select count(*) from T_Account where account = ?</li>
+<li>select balance from T_Account where account = ?</li>
+<li>update T_Account set balance=? where account =?<h2 id="五、Dao层的实现"><a href="#五、Dao层的实现" class="headerlink" title="五、Dao层的实现"></a>五、Dao层的实现</h2></li>
+<li>Dao层角色：<br>1）Dao接口层：声明Dao接口<br>2）Dao实现层：声明Dao接口实现类</li>
+<li>2.Dao层命名规则：<br>1）Dao接口层：com.emmm.dao(com.emmm为公司域名倒写，这里是我胡写的)<br>【接口】：表Dao<br>2）Dao实现层：com.emmm.daoImpl<br>【实现类】：表DaoImpl  <h2 id="六、独立使用Dao层处理业务的错误"><a href="#六、独立使用Dao层处理业务的错误" class="headerlink" title="六、独立使用Dao层处理业务的错误"></a>六、独立使用Dao层处理业务的错误</h2></li>
+<li>虽然可以实现【SQL语句的复用】却无法实现【业务的复用】</li>
+<li>无法将参与同一个业务中sql命令放入同一个事务管理【事务的封装】<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Connection connextion = DriverManager.getConnection(url, user, password);</span><br><span class="line">Statement statement = connextion.createStatement();</span><br><span class="line">statement.executeUpdate(sql1);</span><br><span class="line">statement.executeUpdate(sql2);</span><br></pre></td></tr></table></figure></li>
+<li>在这个例子中，sql1和sql2就是在同一个connection中运行的，如果sql1执行成功，sql2执行失败，则可以回滚connection到二者皆未执行的状态。张三给罗翔转账是一个完整的业务，如果给张三扣1000块钱的sql执行成功了，而给罗翔加1000块钱的sql出错了，那么就需要全部回滚到业务未开始状态。也就是所谓【业务封装】</li>
+<li>本例中单独使用Dao层处理业务的话，虽然可以按性质将SQL语句划分为3类SQL进行复用，但无法进行业务的封装，这个任务也就落在了【Service层】上。</li>
+</ul>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -192,145 +244,106 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/07/16/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3MVC%E4%B9%8BDao%E5%B1%82/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/07/15/JDBC%E8%BF%9E%E6%8E%A5MySQL%E5%AE%9E%E4%BE%8B/" class="archive-article-date">
-  	<time datetime="2020-07-15T13:06:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-15</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/07/15/JDBC%E8%BF%9E%E6%8E%A5MySQL%E5%AE%9E%E4%BE%8B/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JDBC连接MySQL实例</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/07/15/JDBC%E8%BF%9E%E6%8E%A5MySQL%E5%AE%9E%E4%BE%8B/">JDBC连接MySQL实例</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JAVA</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JDBC</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/07/15/Hexo%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%94%B9%E4%B8%BB%E9%A2%98%E4%B8%8E%E6%96%87%E7%AB%A0%E7%BC%96%E8%BE%91/" class="archive-article-date">
-  	<time datetime="2020-07-14T23:27:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/07/15/Hexo%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%94%B9%E4%B8%BB%E9%A2%98%E4%B8%8E%E6%96%87%E7%AB%A0%E7%BC%96%E8%BE%91/">Hexo博客更改主题与文章编辑</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hexo</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">博客搭建</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/07/14/GitHub-Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" class="archive-article-date">
-  	<time datetime="2020-07-13T23:36:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/07/14/GitHub-Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">GitHub+Hexo搭建个人博客</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hexo</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">博客搭建</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -353,8 +366,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
