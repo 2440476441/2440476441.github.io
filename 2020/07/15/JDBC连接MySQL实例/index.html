@@ -21,7 +21,7 @@
 <meta property="og:image" content="http://yoursite.com/2020/07/15/JDBC%E8%BF%9E%E6%8E%A5MySQL%E5%AE%9E%E4%BE%8B/%E5%9B%BE4.PNG">
 <meta property="og:image" content="http://yoursite.com/2020/07/15/JDBC%E8%BF%9E%E6%8E%A5MySQL%E5%AE%9E%E4%BE%8B/%E5%9B%BE5.PNG">
 <meta property="article:published_time" content="2020-07-15T13:06:55.000Z">
-<meta property="article:modified_time" content="2020-07-15T15:16:20.799Z">
+<meta property="article:modified_time" content="2020-07-16T03:38:01.987Z">
 <meta property="article:author" content="无名小卒鸡大宝">
 <meta property="article:tag" content="JAVA">
 <meta property="article:tag" content="JDBC">
@@ -196,48 +196,12 @@
 效果图：<br><img src="/2020/07/15/JDBC%E8%BF%9E%E6%8E%A5MySQL%E5%AE%9E%E4%BE%8B/%E5%9B%BE4.PNG" alt="图4">  </li>
 </ul>
 <p>查询数据库的方法：<br> </p>
-<pre><code class="java"><span class="keyword">import</span> java.sql.Connection;
-<span class="keyword">import</span> java.sql.DriverManager;
-<span class="keyword">import</span> java.sql.ResultSet;
-<span class="keyword">import</span> java.sql.SQLException;
-<span class="keyword">import</span> java.sql.Statement;
-<span class="keyword">import</span> com.mysql.cj.jdbc.Driver;
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.sql.Connection;</span><br><span class="line"><span class="keyword">import</span> java.sql.DriverManager;</span><br><span class="line"><span class="keyword">import</span> java.sql.ResultSet;</span><br><span class="line"><span class="keyword">import</span> java.sql.SQLException;</span><br><span class="line"><span class="keyword">import</span> java.sql.Statement;</span><br><span class="line"><span class="keyword">import</span> com.mysql.cj.jdbc.Driver;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">jdbc_test</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		select();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">select</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			<span class="comment">//1.注册一个新的驱动</span></span><br><span class="line">			<span class="comment">//如果没有添加依赖，那么这里会报错</span></span><br><span class="line">			DriverManager.registerDriver(<span class="keyword">new</span> Driver());</span><br><span class="line">			<span class="comment">//2.创建URL地址，这里是连接到本地的3306端口，查看Navicat中的连接信息可以看到这些信息</span></span><br><span class="line">			<span class="comment">//jdbctest是数据库名</span></span><br><span class="line">			<span class="comment">//?serverTimezone=UTC&amp;characterEncoding=utf-8可以有效解决因编码格式出现的乱码问题</span></span><br><span class="line">			String url = <span class="string">"jdbc:mysql://localhost:3306/jdbctest?serverTimezone=UTC&amp;characterEncoding=utf-8"</span>;</span><br><span class="line">			<span class="comment">//3.连接数据库的用户名和密码</span></span><br><span class="line">			String user =<span class="string">"root"</span>;</span><br><span class="line">			String password = <span class="string">"123456"</span>;</span><br><span class="line">			<span class="comment">//4.创建连接对象</span></span><br><span class="line">			Connection connextion = DriverManager.getConnection(url, user, password);</span><br><span class="line">			<span class="comment">//5.创建Statement平台对象，这个平台用于执行SQL语句</span></span><br><span class="line">			Statement statement = connextion.createStatement();</span><br><span class="line">			<span class="comment">//6.执行SQL语句，返回值给ResultSet对象</span></span><br><span class="line">			ResultSet rs = statement.executeQuery(<span class="string">"select * from usertable"</span>);</span><br><span class="line">			<span class="comment">//7.这里可以将rs想象成二维数组，rs.next()方法依次指向每一行</span></span><br><span class="line">			<span class="comment">//rs.beforeFirst();返回第一行</span></span><br><span class="line">			<span class="keyword">while</span>(rs.next())&#123;</span><br><span class="line">				System.out.println(<span class="string">"ID:"</span>+rs.getInt(<span class="string">"userID"</span>) +<span class="string">",姓名："</span>+ rs.getString(<span class="string">"username"</span>));</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">jdbc_test</span> </span>{
-    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>{
-        select();
-    }
-    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">select</span><span class="params">()</span></span>{
-        <span class="keyword">try</span> {
-            <span class="comment">//1.注册一个新的驱动</span>
-            <span class="comment">//如果没有添加依赖，那么这里会报错</span>
-            DriverManager.registerDriver(<span class="keyword">new</span> Driver());
-            <span class="comment">//2.创建URL地址，这里是连接到本地的3306端口，查看Navicat中的连接信息可以看到这些信息</span>
-            <span class="comment">//jdbctest是数据库名</span>
-            <span class="comment">//?serverTimezone=UTC&amp;characterEncoding=utf-8可以有效解决因编码格式出现的乱码问题</span>
-            String url = <span class="string">"jdbc:mysql://localhost:3306/jdbctest?serverTimezone=UTC&amp;characterEncoding=utf-8"</span>;
-            <span class="comment">//3.连接数据库的用户名和密码</span>
-            String user =<span class="string">"root"</span>;
-            String password = <span class="string">"123456"</span>;
-            <span class="comment">//4.创建连接对象</span>
-            Connection connextion = DriverManager.getConnection(url, user, password);
-            <span class="comment">//5.创建Statement平台对象，这个平台用于执行SQL语句</span>
-            Statement statement = connextion.createStatement();
-            <span class="comment">//6.执行SQL语句，返回值给ResultSet对象</span>
-            ResultSet rs = statement.executeQuery(<span class="string">"select * from usertable"</span>);
-            <span class="comment">//7.这里可以将rs想象成二维数组，rs.next()方法依次指向每一行</span>
-            <span class="comment">//rs.beforeFirst();返回第一行</span>
-            <span class="keyword">while</span>(rs.next()){
-                System.out.println(<span class="string">"ID:"</span>+rs.getInt(<span class="string">"userID"</span>) +<span class="string">",姓名："</span>+ rs.getString(<span class="string">"username"</span>));
-            }
-        } <span class="keyword">catch</span> (SQLException e) {
-            e.printStackTrace();
-        }
-    }    
-}</code></pre>
-<p>效果图：<br><img src="/2020/07/15/JDBC%E8%BF%9E%E6%8E%A5MySQL%E5%AE%9E%E4%BE%8B/%E5%9B%BE5.PNG" alt="图5">  </p>
+<p>效果图：<br><br><img src="/2020/07/15/JDBC%E8%BF%9E%E6%8E%A5MySQL%E5%AE%9E%E4%BE%8B/%E5%9B%BE5.PNG" alt="图5"><br>最后，连接完成之后要依次关闭ResultSet、statement和connection，释放资源：  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">finally</span> &#123;</span><br><span class="line">			<span class="keyword">try</span> &#123;<span class="keyword">if</span>(rs!=<span class="keyword">null</span>)&#123;</span><br><span class="line">				rs.close();&#125;</span><br><span class="line">			&#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">				<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">try</span> &#123;<span class="keyword">if</span>(statement!=<span class="keyword">null</span>)&#123;</span><br><span class="line">				statement.close();&#125;</span><br><span class="line">			&#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">				<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">try</span> &#123;<span class="keyword">if</span>(connection!=<span class="keyword">null</span>)&#123;</span><br><span class="line">				connection.close();&#125;</span><br><span class="line">			&#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">				<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="PS"><a href="#PS" class="headerlink" title="PS"></a>PS</h2><ul>
-<li>文章到这里就基本就展示了JDBC+MySQL的用法，需要注意的是不同版本的MySQL和驱动jar包可能存在不兼容的情况，我这里使用的版本是MySQL8.0和8.0.19版本的jar包实测可用</li>
+<li>文章到这里就基本就展示了JDBC+MySQL的最基本用法，需要注意的是不同版本的MySQL和驱动jar包可能存在不兼容的情况，我这里使用的版本是MySQL8.0和8.0.19版本的jar包实测可用</li>
 </ul>
 
       
