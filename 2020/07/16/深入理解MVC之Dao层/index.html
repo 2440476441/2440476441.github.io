@@ -6,13 +6,13 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>深入理解MVC之Dao层 | Hexo</title>
+  <title>深入理解MVC之Dao层 | 记录学习历程</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="一、MVC开发模式的优点： 提高JavaWeb开发的代码复用性，避免了重复性开发 有效帮助开发人员实现业务中【事务管理】二、MVC开发角色组成： C：controller，控制层 M：model，业务模型层，完成业务处理1.dao层：直接操作数据库2.service层：调用dao层完成业务实现，负责管理所调用的dao层的【事务管理】 V：view，视图层，将处理结果写入到响应包——JSP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="深入理解MVC之Dao层">
 <meta property="og:url" content="http://yoursite.com/2020/07/16/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3MVC%E4%B9%8BDao%E5%B1%82/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="记录学习历程">
 <meta property="og:description" content="一、MVC开发模式的优点： 提高JavaWeb开发的代码复用性，避免了重复性开发 有效帮助开发人员实现业务中【事务管理】二、MVC开发角色组成： C：controller，控制层 M：model，业务模型层，完成业务处理1.dao层：直接操作数据库2.service层：调用dao层完成业务实现，负责管理所调用的dao层的【事务管理】 V：view，视图层，将处理结果写入到响应包——JSP">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://yoursite.com/2020/07/16/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3MVC%E4%B9%8BDao%E5%B1%82/%E5%9B%BE1.PNG">
@@ -24,7 +24,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://yoursite.com/2020/07/16/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3MVC%E4%B9%8BDao%E5%B1%82/%E5%9B%BE1.PNG">
   
-    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="记录学习历程" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -66,7 +66,7 @@
 			</ul>
 		</nav>
 		<nav>
-			共有4篇文章
+			共有6篇文章
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -308,6 +308,15 @@
   
 <nav id="article-nav">
   
+    <a href="/2020/07/17/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3MVC%E4%B9%8BService%E5%B1%82/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          深入理解MVC之Service层
+        
+      </div>
+    </a>
+  
   
     <a href="/2020/07/15/JDBC%E8%BF%9E%E6%8E%A5MySQL%E5%AE%9E%E4%BE%8B/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">JDBC连接MySQL实例</div>
@@ -449,6 +458,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">JDBC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">log4j</a>
               </li>
              
               <li class="article-tag-list-item">

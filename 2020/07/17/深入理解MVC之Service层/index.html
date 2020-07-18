@@ -6,15 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>记录学习历程</title>
+  <title>深入理解MVC之Service层 | 记录学习历程</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="记录学习历程">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="一、Service层作用 封装了具体业务的实现方案，来提高【业务实现】的复用性 负责将参与本次业务实现的Dao层中事务进行管理   二、Service层角色 1）Service接口层   2）Service实现层三、命名规范：1）service接口层：com.emmm.service【接口】：如果本次业务只跟一张表关联：表名Service如果本次业务跟多张表关联：业务名称Service">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深入理解MVC之Service层">
+<meta property="og:url" content="http://yoursite.com/2020/07/17/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3MVC%E4%B9%8BService%E5%B1%82/index.html">
 <meta property="og:site_name" content="记录学习历程">
+<meta property="og:description" content="一、Service层作用 封装了具体业务的实现方案，来提高【业务实现】的复用性 负责将参与本次业务实现的Dao层中事务进行管理   二、Service层角色 1）Service接口层   2）Service实现层三、命名规范：1）service接口层：com.emmm.service【接口】：如果本次业务只跟一张表关联：表名Service如果本次业务跟多张表关联：业务名称Service">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/2020/07/17/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3MVC%E4%B9%8BService%E5%B1%82/%E5%9B%BE1.png">
+<meta property="article:published_time" content="2020-07-16T23:45:28.000Z">
+<meta property="article:modified_time" content="2020-07-18T23:13:18.655Z">
 <meta property="article:author" content="无名小卒鸡大宝">
+<meta property="article:tag" content="JAVA">
+<meta property="article:tag" content="MVC">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/07/17/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3MVC%E4%B9%8BService%E5%B1%82/%E5%9B%BE1.png">
   
     <link rel="alternative" href="/atom.xml" title="记录学习历程" type="application/atom+xml">
   
@@ -147,100 +155,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-log4j" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-深入理解MVC之Service层" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/18/log4j/">log4j</a>
-    </h1>
-  
-
-        
-        <a href="/2020/07/18/log4j/" class="archive-article-date">
-  	<time datetime="2020-07-17T23:11:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <hr>
-<h2 id="什么是log4j"><a href="#什么是log4j" class="headerlink" title="什么是log4j"></a>什么是log4j</h2><ul>
-<li>Log4j是Apache的一个开源项目，通过使用Log4j，我们可以控制日志信息输送的目的地是控制台、文件、GUI组件，甚至是套接口服务器、NT的事件记录器、UNIX Syslog守护进程等；我们也可以控制每一条日志的输出格式；通过定义每一条日志信息的级别，我们能够更加细致地控制日志的生成过程。最令人感兴趣的就是，这些可以通过一个配置文件来灵活地进行配置，而不需要修改应用的代码。——<a href="https://baike.baidu.com/item/log4j/480673?fr=aladdin" target="_blank" rel="noopener">百度百科</a></li>
-<li>实际开发90%都是使用log4j记录日志，log4j底层就是java.util.logging.Logger实现的</li>
-<li>简言之，log4j可以帮助我们更好的记录程序运行过程。并且可以根据我们的需求生成日志文件。在程序出问题时，客户往往只会描述前端的表现如何，我们不能和他们谈后端，那么这时只需要客户提供日志文件就可以了。</li></ul>
-        
-          <a class="article-more-a" href="/2020/07/18/log4j/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JAVA</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">log4j</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/07/18/log4j/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-深入理解MVC之Service层" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/17/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3MVC%E4%B9%8BService%E5%B1%82/">深入理解MVC之Service层</a>
+    <h1 class="article-title" itemprop="name">
+      深入理解MVC之Service层
     </h1>
   
 
@@ -261,12 +183,64 @@
 <hr>
 <h2 id="二、Service层角色"><a href="#二、Service层角色" class="headerlink" title="二、Service层角色"></a>二、Service层角色</h2><ul>
 <li>1）Service接口层  </li>
-<li>2）Service实现层<h2 id="三、命名规范："><a href="#三、命名规范：" class="headerlink" title="三、命名规范："></a>三、命名规范：</h2>1）service接口层：com.emmm.service<br>【接口】：如果本次业务只跟一张表关联：表名Service<br>如果本次业务跟多张表关联：业务名称Service</li></ul>
-        
-          <a class="article-more-a" href="/2020/07/17/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3MVC%E4%B9%8BService%E5%B1%82/#more">more >></a>
-        
+<li>2）Service实现层<h2 id="三、命名规范："><a href="#三、命名规范：" class="headerlink" title="三、命名规范："></a>三、命名规范：</h2>1）service接口层：com.emmm.service<br>【接口】：如果本次业务只跟一张表关联：表名Service<br>如果本次业务跟多张表关联：业务名称Service  <a id="more"></a>  
+
+</li>
+</ul>
+<p>2）service实现层：com.emmm.serviceImpl<br>【实现类】：如果本次业务只跟一张表关联：表名ServiceImpl<br>如果本次业务跟多张表关联：业务名称ServiceImpl</p>
+<h2 id="四、Service层业务管理"><a href="#四、Service层业务管理" class="headerlink" title="四、Service层业务管理"></a>四、Service层业务管理</h2><ul>
+<li>依旧是经典的转账案例，张三向罗翔转账，我们为这个【转账业务】的Dao接口层做出了如下设计：  </li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">T_AccountDao</span> </span>&#123;</span><br><span class="line">	<span class="comment">//1.检测账户是否存在</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">checkAccount</span><span class="params">(String account)</span> <span class="keyword">throws</span> Exception</span>;</span><br><span class="line">	<span class="comment">//2.读取账户余额</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getBalance</span><span class="params">(String account)</span> <span class="keyword">throws</span> Exception</span>;	</span><br><span class="line">	<span class="comment">//3.更新账户的余额</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">updateBalance</span><span class="params">(String account,<span class="keyword">int</span> balance)</span> <span class="keyword">throws</span> Exception</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>既然我们说Service层要实现业务的封装，需要让查询张三或罗翔账户是否存在、查询张三或罗翔余额、修改张三或罗翔余额这六个SQl在同一个connection中进行。那么首先先将Service接口层写出来：  </li>
+</ul>
+<pre><code class="java"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">T_AccountService</span> </span>{
+    <span class="comment">//转账业务</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">transforAccount</span><span class="params">(String fromWho,String toWho,<span class="keyword">int</span> amount)</span> <span class="keyword">throws</span> Exception</span>;
+}</code></pre>
+<ul>
+<li>去实现Service层的时候我们会发现，如何让这么多封装好的Dao层方法都使用同一个connection，我们可以在实现Service层的时候向Dao层方法中传递connection参数,比如这样：  </li>
+</ul>
+<pre><code class="java"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">T_AccountDao</span> </span>{
+    <span class="comment">//1.检测账户是否存在</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">checkAccount</span><span class="params">(String account,Connection con)</span> <span class="keyword">throws</span> Exception</span>;
+    <span class="comment">//2.读取账户余额</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getBalance</span><span class="params">(String account,Connection con)</span> <span class="keyword">throws</span> Exception</span>;    
+    <span class="comment">//3.更新账户的余额</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">updateBalance</span><span class="params">(String account,<span class="keyword">int</span> balance,Connection con)</span> <span class="keyword">throws</span> Exception</span>;
+}</code></pre>
+<ul>
+<li>但是，问题又来了。如果每写一个Dao接口都要带一个connection参数，这样也不利于我们的代码维护。于是就引出了ThreadLocal，让它来帮助我们解决这个问题。<h2 id="五、ThreadLocal"><a href="#五、ThreadLocal" class="headerlink" title="五、ThreadLocal"></a>五、ThreadLocal</h2></li>
+<li>话不多说，放图：<br><img src="/2020/07/17/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3MVC%E4%B9%8BService%E5%B1%82/%E5%9B%BE1.png" alt>  </li>
+<li>要注意ThreadLocal并不是一个线程，而是一个键值对仓库。存储一个key值和一个共享值，key代表当前线程，而共享值可以是任何值。但注意，一个线程只能有一个共享值，且完成后需要销毁。</li>
+<li></li>
+</ul>
+
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -290,16 +264,84 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/07/17/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3MVC%E4%B9%8BService%E5%B1%82/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/07/17/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3MVC%E4%B9%8BService%E5%B1%82/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2020/07/18/log4j/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          log4j
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/07/16/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3MVC%E4%B9%8BDao%E5%B1%82/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">深入理解MVC之Dao层</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -319,344 +361,14 @@
 
 
 
-
   
-    <article id="post-深入理解MVC之Dao层" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/16/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3MVC%E4%B9%8BDao%E5%B1%82/">深入理解MVC之Dao层</a>
-    </h1>
   
 
-        
-        <a href="/2020/07/16/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3MVC%E4%B9%8BDao%E5%B1%82/" class="archive-article-date">
-  	<time datetime="2020-07-16T10:21:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、MVC开发模式的优点："><a href="#一、MVC开发模式的优点：" class="headerlink" title="一、MVC开发模式的优点："></a>一、MVC开发模式的优点：</h2><ul>
-<li>提高JavaWeb开发的代码复用性，避免了重复性开发</li>
-<li>有效帮助开发人员实现业务中【事务管理】<h2 id="二、MVC开发角色组成："><a href="#二、MVC开发角色组成：" class="headerlink" title="二、MVC开发角色组成："></a>二、MVC开发角色组成：</h2></li>
-<li>C：controller，控制层</li>
-<li>M：model，业务模型层，完成业务处理<br>1.dao层：直接操作数据库<br>2.service层：调用dao层完成业务实现，负责管理所调用的dao层的【事务管理】</li>
-<li>V：view，视图层，将处理结果写入到响应包——JSP</li></ul>
-        
-          <a class="article-more-a" href="/2020/07/16/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3MVC%E4%B9%8BDao%E5%B1%82/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JAVA</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">MVC</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/07/16/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3MVC%E4%B9%8BDao%E5%B1%82/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-JDBC连接MySQL实例" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/15/JDBC%E8%BF%9E%E6%8E%A5MySQL%E5%AE%9E%E4%BE%8B/">JDBC连接MySQL实例</a>
-    </h1>
   
 
-        
-        <a href="/2020/07/15/JDBC%E8%BF%9E%E6%8E%A5MySQL%E5%AE%9E%E4%BE%8B/" class="archive-article-date">
-  	<time datetime="2020-07-15T13:06:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <hr>
-<h2 id="什么是JDBC"><a href="#什么是JDBC" class="headerlink" title="什么是JDBC"></a>什么是JDBC</h2><ul>
-<li>Java数据库连接，（Java Database Connectivity，简称JDBC）是Java语言中用来规范客户端程序如何来访问数据库的应用程序接口，提供了诸如查询和更新数据库中数据的方法。JDBC也是Sun Microsystems的商标。我们通常说的JDBC是面向关系型数据库的——<a href="https://baike.baidu.com/item/Java%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5/1173389?fromtitle=JDBC&fromid=485214&fr=aladdin" target="_blank" rel="noopener">百度百科</a>  </li>
-<li>简单来说JDBC就是负责与数据库建立连接，发送SQL语句，并返回处理结果的应用程序接口。JDBC是直接调用SQL命令的“低级”接口，可以在其之上建立高级接口也就是“用户友好型”接口。</li></ul>
-        
-          <a class="article-more-a" href="/2020/07/15/JDBC%E8%BF%9E%E6%8E%A5MySQL%E5%AE%9E%E4%BE%8B/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JAVA</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JDBC</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/07/15/JDBC%E8%BF%9E%E6%8E%A5MySQL%E5%AE%9E%E4%BE%8B/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Hexo博客更改主题与文章编辑" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/15/Hexo%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%94%B9%E4%B8%BB%E9%A2%98%E4%B8%8E%E6%96%87%E7%AB%A0%E7%BC%96%E8%BE%91/">Hexo博客更改主题与文章编辑</a>
-    </h1>
   
 
-        
-        <a href="/2020/07/15/Hexo%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%94%B9%E4%B8%BB%E9%A2%98%E4%B8%8E%E6%96%87%E7%AB%A0%E7%BC%96%E8%BE%91/" class="archive-article-date">
-  	<time datetime="2020-07-14T23:27:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <hr>
-<h2 id="更改主题"><a href="#更改主题" class="headerlink" title="更改主题"></a>更改主题</h2><ul>
-<li>Hexo给我们提供的默认主题叫landscape，在themes目录可以看到有个叫landscape的文件夹。所有的主题文件都存放在themes文件夹中。</li>
-<li><a href="https://hexo.io/themes/" target="_blank" rel="noopener">Hexo themes</a>上我们提供了大量的优秀主题，随便点进一个主题可以看到作者为我们提供了下载地址，比如这样：<br><img src="/2020/07/15/Hexo%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%94%B9%E4%B8%BB%E9%A2%98%E4%B8%8E%E6%96%87%E7%AB%A0%E7%BC%96%E8%BE%91/%E5%9B%BE1.PNG" alt="图1"></li></ul>
-        
-          <a class="article-more-a" href="/2020/07/15/Hexo%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%94%B9%E4%B8%BB%E9%A2%98%E4%B8%8E%E6%96%87%E7%AB%A0%E7%BC%96%E8%BE%91/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hexo</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">博客搭建</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/07/15/Hexo%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%94%B9%E4%B8%BB%E9%A2%98%E4%B8%8E%E6%96%87%E7%AB%A0%E7%BC%96%E8%BE%91/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-GitHub-Hexo搭建个人博客" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/14/GitHub-Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">GitHub+Hexo搭建个人博客</a>
-    </h1>
-  
-
-        
-        <a href="/2020/07/14/GitHub-Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" class="archive-article-date">
-  	<time datetime="2020-07-13T23:36:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <hr>
-<h2 id="一、环境的准备"><a href="#一、环境的准备" class="headerlink" title="一、环境的准备"></a>一、环境的准备</h2><ul>
-<li>安装<a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node.js</a><br>cmd输入<code>node -v</code>和<code>npm -v</code>查看版本号确定是否安装成功</li>
-<li>安装git,360软件商店就有，也可以自行搜索<br>验证版本信息<code>git --version</code></li>
-<li>使用Node.js自带的包管理器npm下载淘宝的镜像源cnpm，后续使用cnpm下载可以提高下载速度<br>cmd中输入：<code>npm install -g cnpm --registry</code>即可，等待下载完成输入：<code>cnpm -v</code>显示版本号，安装成功</li>
-<li>接下来用cnpm安装hexo框架<br>cmd中输入：<code>cnpm install -g hexo-cli</code><br>下载完成后输入<code>cnpm -v</code>查看版本号，验证是否安装成功</li></ul>
-        
-          <a class="article-more-a" href="/2020/07/14/GitHub-Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hexo</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">博客搭建</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/07/14/GitHub-Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
 
 
@@ -679,8 +391,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

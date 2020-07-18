@@ -6,13 +6,13 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>JDBC连接MySQL实例 | Hexo</title>
+  <title>JDBC连接MySQL实例 | 记录学习历程</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="什么是JDBC Java数据库连接，（Java Database Connectivity，简称JDBC）是Java语言中用来规范客户端程序如何来访问数据库的应用程序接口，提供了诸如查询和更新数据库中数据的方法。JDBC也是Sun Microsystems的商标。我们通常说的JDBC是面向关系型数据库的——百度百科   简单来说JDBC就是负责与数据库建立连接，发送SQL语句，并返回处理结果的应">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JDBC连接MySQL实例">
 <meta property="og:url" content="http://yoursite.com/2020/07/15/JDBC%E8%BF%9E%E6%8E%A5MySQL%E5%AE%9E%E4%BE%8B/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="记录学习历程">
 <meta property="og:description" content="什么是JDBC Java数据库连接，（Java Database Connectivity，简称JDBC）是Java语言中用来规范客户端程序如何来访问数据库的应用程序接口，提供了诸如查询和更新数据库中数据的方法。JDBC也是Sun Microsystems的商标。我们通常说的JDBC是面向关系型数据库的——百度百科   简单来说JDBC就是负责与数据库建立连接，发送SQL语句，并返回处理结果的应">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://yoursite.com/2020/07/15/JDBC%E8%BF%9E%E6%8E%A5MySQL%E5%AE%9E%E4%BE%8B/%E5%9B%BE1.PNG">
@@ -21,14 +21,14 @@
 <meta property="og:image" content="http://yoursite.com/2020/07/15/JDBC%E8%BF%9E%E6%8E%A5MySQL%E5%AE%9E%E4%BE%8B/%E5%9B%BE4.PNG">
 <meta property="og:image" content="http://yoursite.com/2020/07/15/JDBC%E8%BF%9E%E6%8E%A5MySQL%E5%AE%9E%E4%BE%8B/%E5%9B%BE5.PNG">
 <meta property="article:published_time" content="2020-07-15T13:06:55.000Z">
-<meta property="article:modified_time" content="2020-07-16T03:38:01.987Z">
+<meta property="article:modified_time" content="2020-07-17T06:39:51.084Z">
 <meta property="article:author" content="无名小卒鸡大宝">
 <meta property="article:tag" content="JAVA">
 <meta property="article:tag" content="JDBC">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://yoursite.com/2020/07/15/JDBC%E8%BF%9E%E6%8E%A5MySQL%E5%AE%9E%E4%BE%8B/%E5%9B%BE1.PNG">
   
-    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="记录学习历程" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -70,7 +70,7 @@
 			</ul>
 		</nav>
 		<nav>
-			共有4篇文章
+			共有6篇文章
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -201,7 +201,8 @@
 <p>效果图：<br><br><img src="/2020/07/15/JDBC%E8%BF%9E%E6%8E%A5MySQL%E5%AE%9E%E4%BE%8B/%E5%9B%BE5.PNG" alt="图5"><br>最后，连接完成之后要依次关闭ResultSet、statement和connection，释放资源：  </p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">finally</span> &#123;</span><br><span class="line">			<span class="keyword">try</span> &#123;<span class="keyword">if</span>(rs!=<span class="keyword">null</span>)&#123;</span><br><span class="line">				rs.close();&#125;</span><br><span class="line">			&#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">				<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">try</span> &#123;<span class="keyword">if</span>(statement!=<span class="keyword">null</span>)&#123;</span><br><span class="line">				statement.close();&#125;</span><br><span class="line">			&#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">				<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">try</span> &#123;<span class="keyword">if</span>(connection!=<span class="keyword">null</span>)&#123;</span><br><span class="line">				connection.close();&#125;</span><br><span class="line">			&#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">				<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="PS"><a href="#PS" class="headerlink" title="PS"></a>PS</h2><ul>
-<li>文章到这里就基本就展示了JDBC+MySQL的最基本用法，需要注意的是不同版本的MySQL和驱动jar包可能存在不兼容的情况，我这里使用的版本是MySQL8.0和8.0.19版本的jar包实测可用</li>
+<li>文章到这里就基本就展示了JDBC+MySQL的最基本用法，需要注意的是不同版本的MySQL和驱动jar包可能存在不兼容的情况，我这里使用的版本是MySQL8.0和8.0.19版本的jar包实测可用  </li>
+<li>关于注册驱动的三种方式：<a href="https://www.cnblogs.com/thaipine/p/11634772.html" target="_blank" rel="noopener">JDBC注册驱动程序3种方式</a></li>
 </ul>
 
       
@@ -461,6 +462,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">JDBC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">log4j</a>
               </li>
              
               <li class="article-tag-list-item">
