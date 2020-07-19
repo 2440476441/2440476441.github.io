@@ -18,7 +18,7 @@
 <meta property="og:image" content="http://yoursite.com/2020/07/18/log4j/%E5%9B%BE1.PNG">
 <meta property="og:image" content="http://yoursite.com/2020/07/18/log4j/%E5%9B%BE2.PNG">
 <meta property="article:published_time" content="2020-07-17T23:11:30.000Z">
-<meta property="article:modified_time" content="2020-07-18T23:11:13.177Z">
+<meta property="article:modified_time" content="2020-07-19T01:20:01.524Z">
 <meta property="article:author" content="无名小卒鸡大宝">
 <meta property="article:tag" content="JAVA">
 <meta property="article:tag" content="log4j">
@@ -67,7 +67,7 @@
 			</ul>
 		</nav>
 		<nav>
-			共有6篇文章
+			共有7篇文章
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -216,7 +216,8 @@ log4j.appender.D.layout.ConversionPattern = %-d{yyyy-MM-dd HH:mm:ss}  [ %t:%r ] 
 <li><code>log4j.rootLogger = debug,stdout,D</code>中debug代表要显示的等级，log4j共有以下5个等级:<br>FATAL      0<br>ERROR      3<br>WARN       4<br>INFO       6<br>DEBUG      7 ↑</li>
 <li>新建一个测试类:  </li>
 </ul>
-<pre><code class="java"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>{
+<pre><code class="java"><span class="keyword">private</span> <span class="keyword">static</span> Logger log = Logger.getLogger(Tset<span class="class">.<span class="keyword">class</span>)</span>; 
+<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>{
     <span class="comment">// TODO Auto-generated method stub</span>
     log.info(<span class="string">"好吧"</span>);
     log.debug(<span class="string">"好吧"</span>);
@@ -361,6 +362,15 @@ log4j.appender.D.layout.ConversionPattern = %-d{yyyy-MM-dd HH:mm:ss}  [ %t:%r ] 
 
   
 <nav id="article-nav">
+  
+    <a href="/2020/07/19/%E6%8C%81%E4%B9%85%E5%B1%82%E6%A1%86%E6%9E%B6%E2%80%94%E2%80%94mybatis/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          持久层框架——mybatis
+        
+      </div>
+    </a>
   
   
     <a href="/2020/07/17/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3MVC%E4%B9%8BService%E5%B1%82/" id="article-nav-older" class="article-nav-link-wrap">
@@ -507,6 +517,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">log4j</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">mybaites</a>
               </li>
              
               <li class="article-tag-list-item">

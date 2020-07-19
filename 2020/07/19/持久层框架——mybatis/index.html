@@ -6,23 +6,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>深入理解MVC之Dao层 | 记录学习历程</title>
+  <title>持久层框架——mybatis | 记录学习历程</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一、MVC开发模式的优点： 提高JavaWeb开发的代码复用性，避免了重复性开发 有效帮助开发人员实现业务中【事务管理】二、MVC开发角色组成： C：controller，控制层 M：model，业务模型层，完成业务处理1.dao层：直接操作数据库2.service层：调用dao层完成业务实现，负责管理所调用的dao层的【事务管理】 V：view，视图层，将处理结果写入到响应包——JSP">
+  <meta name="description" content="什么是mybatis MyBatis 是一款优秀的持久层框架，它支持定制化 SQL、存储过程以及高级映射。MyBatis 避免了几乎所有的 JDBC 代码和手动设置参数以及获取结果集。MyBatis 可以使用简单的 XML 或注解来配置和映射原生信息，将接口和 Java 的 POJOs(Plain Ordinary Java Object,普通的 Java对象)映射成数据库中的记录。——百度百科">
 <meta property="og:type" content="article">
-<meta property="og:title" content="深入理解MVC之Dao层">
-<meta property="og:url" content="http://yoursite.com/2020/07/16/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3MVC%E4%B9%8BDao%E5%B1%82/index.html">
+<meta property="og:title" content="持久层框架——mybatis">
+<meta property="og:url" content="http://yoursite.com/2020/07/19/%E6%8C%81%E4%B9%85%E5%B1%82%E6%A1%86%E6%9E%B6%E2%80%94%E2%80%94mybatis/index.html">
 <meta property="og:site_name" content="记录学习历程">
-<meta property="og:description" content="一、MVC开发模式的优点： 提高JavaWeb开发的代码复用性，避免了重复性开发 有效帮助开发人员实现业务中【事务管理】二、MVC开发角色组成： C：controller，控制层 M：model，业务模型层，完成业务处理1.dao层：直接操作数据库2.service层：调用dao层完成业务实现，负责管理所调用的dao层的【事务管理】 V：view，视图层，将处理结果写入到响应包——JSP">
+<meta property="og:description" content="什么是mybatis MyBatis 是一款优秀的持久层框架，它支持定制化 SQL、存储过程以及高级映射。MyBatis 避免了几乎所有的 JDBC 代码和手动设置参数以及获取结果集。MyBatis 可以使用简单的 XML 或注解来配置和映射原生信息，将接口和 Java 的 POJOs(Plain Ordinary Java Object,普通的 Java对象)映射成数据库中的记录。——百度百科">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://yoursite.com/2020/07/16/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3MVC%E4%B9%8BDao%E5%B1%82/%E5%9B%BE1.PNG">
-<meta property="article:published_time" content="2020-07-16T10:21:29.000Z">
-<meta property="article:modified_time" content="2020-07-16T10:47:17.046Z">
+<meta property="og:image" content="http://yoursite.com/2020/07/19/%E6%8C%81%E4%B9%85%E5%B1%82%E6%A1%86%E6%9E%B6%E2%80%94%E2%80%94mybatis/%E5%9B%BE1.PNG">
+<meta property="og:image" content="http://yoursite.com/2020/07/19/%E6%8C%81%E4%B9%85%E5%B1%82%E6%A1%86%E6%9E%B6%E2%80%94%E2%80%94mybatis/%E5%9B%BE2.PNG">
+<meta property="og:image" content="http://yoursite.com/2020/07/19/%E6%8C%81%E4%B9%85%E5%B1%82%E6%A1%86%E6%9E%B6%E2%80%94%E2%80%94mybatis/%E5%9B%BE3.PNG">
+<meta property="article:published_time" content="2020-07-18T23:34:38.000Z">
+<meta property="article:modified_time" content="2020-07-19T03:54:08.670Z">
 <meta property="article:author" content="无名小卒鸡大宝">
 <meta property="article:tag" content="JAVA">
-<meta property="article:tag" content="MVC">
+<meta property="article:tag" content="mybaites">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/2020/07/16/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3MVC%E4%B9%8BDao%E5%B1%82/%E5%9B%BE1.PNG">
+<meta name="twitter:image" content="http://yoursite.com/2020/07/19/%E6%8C%81%E4%B9%85%E5%B1%82%E6%A1%86%E6%9E%B6%E2%80%94%E2%80%94mybatis/%E5%9B%BE1.PNG">
   
     <link rel="alternative" href="/atom.xml" title="记录学习历程" type="application/atom+xml">
   
@@ -155,50 +157,70 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-深入理解MVC之Dao层" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-持久层框架——mybatis" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      深入理解MVC之Dao层
+      持久层框架——mybatis
     </h1>
   
 
         
-        <a href="/2020/07/16/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3MVC%E4%B9%8BDao%E5%B1%82/" class="archive-article-date">
-  	<time datetime="2020-07-16T10:21:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-16</time>
+        <a href="/2020/07/19/%E6%8C%81%E4%B9%85%E5%B1%82%E6%A1%86%E6%9E%B6%E2%80%94%E2%80%94mybatis/" class="archive-article-date">
+  	<time datetime="2020-07-18T23:34:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-19</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="一、MVC开发模式的优点："><a href="#一、MVC开发模式的优点：" class="headerlink" title="一、MVC开发模式的优点："></a>一、MVC开发模式的优点：</h2><ul>
-<li>提高JavaWeb开发的代码复用性，避免了重复性开发</li>
-<li>有效帮助开发人员实现业务中【事务管理】<h2 id="二、MVC开发角色组成："><a href="#二、MVC开发角色组成：" class="headerlink" title="二、MVC开发角色组成："></a>二、MVC开发角色组成：</h2></li>
-<li>C：controller，控制层</li>
-<li>M：model，业务模型层，完成业务处理<br>1.dao层：直接操作数据库<br>2.service层：调用dao层完成业务实现，负责管理所调用的dao层的【事务管理】</li>
-<li>V：view，视图层，将处理结果写入到响应包——JSP<a id="more"></a>
-<h2 id="三、项目编写"><a href="#三、项目编写" class="headerlink" title="三、项目编写"></a>三、项目编写</h2></li>
-<li>先设计数据库</li>
-<li>然后实体类model，entity，bean，javabean</li>
-<li>持久层dao</li>
-<li>业务逻辑service</li>
-<li>控制器controller，servlet，action</li>
-<li>视图view  <h2 id="四、Dao层的作用："><a href="#四、Dao层的作用：" class="headerlink" title="四、Dao层的作用："></a>四、Dao层的作用：</h2></li>
-<li>在实际的业务处理过程中，往往需要多次的数据库访问。这些访问的性质往往是相同的，采用Dao层可以将数据库的访问进行封装，避进行重复性的数据库访问开<br>发操作。同时降低了维护成本。<br><img src="/2020/07/16/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3MVC%E4%B9%8BDao%E5%B1%82/%E5%9B%BE1.PNG" alt></li>
-<li>实际上按性质划分只需要进行以下三种数据库操作：</li>
-<li>select count(*) from T_Account where account = ?</li>
-<li>select balance from T_Account where account = ?</li>
-<li>update T_Account set balance=? where account =?<h2 id="五、Dao层的实现"><a href="#五、Dao层的实现" class="headerlink" title="五、Dao层的实现"></a>五、Dao层的实现</h2></li>
-<li>Dao层角色：<br>1）Dao接口层：声明Dao接口<br>2）Dao实现层：声明Dao接口实现类</li>
-<li>2.Dao层命名规则：<br>1）Dao接口层：com.emmm.dao(com.emmm为公司域名倒写，这里是我胡写的)<br>【接口】：表Dao<br>2）Dao实现层：com.emmm.daoImpl<br>【实现类】：表DaoImpl  <h2 id="六、独立使用Dao层处理业务的错误"><a href="#六、独立使用Dao层处理业务的错误" class="headerlink" title="六、独立使用Dao层处理业务的错误"></a>六、独立使用Dao层处理业务的错误</h2></li>
-<li>虽然可以实现【SQL语句的复用】却无法实现【业务的复用】</li>
-<li>无法将参与同一个业务中sql命令放入同一个事务管理【事务的封装】<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Connection connextion = DriverManager.getConnection(url, user, password);</span><br><span class="line">Statement statement = connextion.createStatement();</span><br><span class="line">statement.executeUpdate(sql1);</span><br><span class="line">statement.executeUpdate(sql2);</span><br></pre></td></tr></table></figure></li>
-<li>在这个例子中，sql1和sql2就是在同一个connection中运行的，如果sql1执行成功，sql2执行失败，则可以回滚connection到二者皆未执行的状态。张三给罗翔转账是一个完整的业务，如果给张三扣1000块钱的sql执行成功了，而给罗翔加1000块钱的sql出错了，那么就需要全部回滚到业务未开始状态。也就是所谓【业务封装】</li>
-<li>本例中单独使用Dao层处理业务的话，虽然可以按性质将SQL语句划分为3类SQL进行复用，但无法进行业务的封装，这个任务也就落在了【Service层】上。</li>
+        <hr>
+<h2 id="什么是mybatis"><a href="#什么是mybatis" class="headerlink" title="什么是mybatis"></a>什么是mybatis</h2><ul>
+<li>MyBatis 是一款优秀的持久层框架，它支持定制化 SQL、存储过程以及高级映射。MyBatis 避免了几乎所有的 JDBC 代码和手动设置参数以及获取结果集。MyBatis 可以使用简单的 XML 或注解来配置和映射原生信息，将接口和 Java 的 POJOs(Plain Ordinary Java Object,普通的 Java对象)映射成数据库中的记录。——<a href="https://baike.baidu.com/item/MyBatis/2824918?fr=aladdin" target="_blank" rel="noopener">百度百科</a></li>
+<li>mybaites的底层是jdbc，他可以使程序猿专注于业务逻辑本身，而不需要再考虑创建connection、statement等。</li>
+</ul>
+<hr>
+<h2 id="mybatis使用"><a href="#mybatis使用" class="headerlink" title="mybatis使用"></a>mybatis使用</h2><ul>
+<li>新建java项目，以及一张MYSQL数据库表</li>
+<li>下载mybatis<a href="https://github.com/mybatis/mybatis-3/releases" target="_blank" rel="noopener">GitHub地址</a></li>
+<li>解压后将mybatis-xxx.jar（核心jar包）和lib里有所有jar包（依赖jar包）全部加入到项目中</li>
+<li>为log4j添加配置文件。配置方法博客左侧菜单栏搜log4j。</li>
+<li>为项目添加MYSQL驱动（Mysqljar包）</li>
+</ul>
+<hr>
+<h2 id="核心配置文件"><a href="#核心配置文件" class="headerlink" title="核心配置文件"></a>核心配置文件</h2><ul>
+<li>配置文件（mysql-config.xml）数据库连接信息<br>在jdbc中的步骤是获取Connection，statement，使用mybatis后只需配置文件即可</li>
+<li>项目根目录src下新建mybatis-config.xml（一般在mybatis压缩包说明文档里会有）：  </li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">configuration</span></span></span><br><span class="line"><span class="meta">PUBLIC <span class="meta-string">"-//mybatis.org//DTD Config 3.0//EN"</span></span></span><br><span class="line"><span class="meta"><span class="meta-string">"http://mybatis.org/dtd/mybatis-3-config.dtd"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">environments:指定数据库相关信息</span></span><br><span class="line"><span class="comment">default：默认使用哪一个数据环境</span></span><br><span class="line"><span class="comment"> environments和environment值必须一致，可以有多个environment</span></span><br><span class="line"><span class="comment"> --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">environments</span> <span class="attr">default</span>=<span class="string">"emp"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">environment</span> <span class="attr">id</span>=<span class="string">"emp"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 是用JDBC相关事务 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">"JDBC"</span>/&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 此处配置的是一个数据库连接池 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">"POOLED"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 数据库驱动、url、账号、密码 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driver"</span> <span class="attr">value</span>=<span class="string">"com.mysql.jdbc.Driver"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"jdbc:mysql://localhost:3306/emp"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"root"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"123456"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">environment</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">environments</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">&lt;mappers&gt;</span></span><br><span class="line"><span class="comment">&lt;mapper resource="org/mybatis/example/BlogMapper.xml"/&gt;</span></span><br><span class="line"><span class="comment">&lt;/mappers&gt;</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="配置映射文件，查询单条语句"><a href="#配置映射文件，查询单条语句" class="headerlink" title="配置映射文件，查询单条语句"></a>配置映射文件，查询单条语句</h2><ul>
+<li>先创建一个职员的javabean对象Employer:<br>private int id;<br>private String name;<br>private String gender;<br>private String phone; </li>
+<li>配置映射文件，新建com.qjc.mapper包，包下新建文件employerMapper文件：  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">mapper</span></span></span><br><span class="line"><span class="meta">PUBLIC <span class="meta-string">"-//mybatis.org//DTD Mapper 3.0//EN"</span></span></span><br><span class="line"><span class="meta"><span class="meta-string">"http://mybatis.org/dtd/mybatis-3-mapper.dtd"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">"org.mybatis.example.BlogMapper"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">resulttype：指定返回值类型（可以是任何类型，这里是Employer类型） </span></span><br><span class="line"><span class="comment">select:表示查询类型</span></span><br><span class="line"><span class="comment">id:必须唯一</span></span><br><span class="line"><span class="comment">#&#123;&#125;:写变量</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"selectEmp"</span> <span class="attr">resultType</span>=<span class="string">"com.qjc.employer.Employer"</span>&gt;</span></span><br><span class="line">	select * from emp where id = #&#123;id&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>为mybatis-config.xml指定映射文件，在后面加上：<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">"com/qjc/mapper/employerMapper.xml"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>新建Test测试类：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Logger log = Logger.getLogger(Test<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">//1.构建数据源|数据连接池</span></span><br><span class="line">		<span class="comment">//配置文件放在src下，路径不要加src，底层会自动加上</span></span><br><span class="line">		 <span class="keyword">try</span>&#123;</span><br><span class="line">		InputStream inputStream = Resources.getResourceAsStream(<span class="string">"mybatis-config.xml"</span>);</span><br><span class="line">		<span class="comment">//2.通过SqlSessionFactoryBuilder()构建一个数据源</span></span><br><span class="line">		<span class="comment">//SqlSessionFactoryBuilder()相当于jdbc中的DataSource</span></span><br><span class="line">		SqlSessionFactory sqlSessionFactory = <span class="keyword">new</span> SqlSessionFactoryBuilder().build(inputStream);</span><br><span class="line">		<span class="comment">//3.获取连接</span></span><br><span class="line">		SqlSession sqlsession = sqlSessionFactory.openSession();</span><br><span class="line">		<span class="comment">//4.调用employerMapper.xml中的映射</span></span><br><span class="line">		Employer obj = sqlsession.selectOne(<span class="string">"selectEmp"</span>,<span class="number">1</span>);</span><br><span class="line">		log.debug(<span class="string">"用户名："</span>+ obj.getName()+<span class="string">","</span>+<span class="string">"手机号："</span>+obj.getPhone());</span><br><span class="line">		 &#125;</span><br><span class="line">		 <span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line">			 e.printStackTrace();</span><br><span class="line">			 log.debug(<span class="string">"连接出错"</span>);</span><br><span class="line">		 &#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></li>
+<li>运行结果：<br><img src="/2020/07/19/%E6%8C%81%E4%B9%85%E5%B1%82%E6%A1%86%E6%9E%B6%E2%80%94%E2%80%94mybatis/%E5%9B%BE1.PNG" alt="图1"></li>
+</ul>
+<hr>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><ul>
+<li>如出现 The server time zone value ‘?й???????’ …的错误是因为mysql返回的时间总是有问题，比实际时间要早8小时。，在url地址后面加上?serverTimezone=GMT</li>
+<li>从上面的例子我们可以看出使用log4j的好处，log4j通过debug将mybatis的底层运作过程都打印出来了</li>
+<li>mybatis的使用帮助我们将ResultSet里的数据封装到javabean对象中了。要注意的是JavaBean中的属性要与数据库中的列名一致，否则，mybatis将无法实现封装。</li>
+</ul>
+<hr>
+<h2 id="查询多条语句"><a href="#查询多条语句" class="headerlink" title="查询多条语句"></a>查询多条语句</h2><ul>
+<li>employerMapper.xml:<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 查询多条 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"selectAll"</span> <span class="attr">resultType</span>=<span class="string">"com.qjc.employer.Employer"</span>&gt;</span></span><br><span class="line">	select * from emp</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>Test.class:<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Object&gt; list = sqlsession.selectList(<span class="string">"selectAll"</span>);</span><br><span class="line">		<span class="keyword">for</span>(Object obj:list)&#123;</span><br><span class="line">			Employer em = (Employer)obj;</span><br><span class="line">			log.debug(em.getName()+<span class="string">","</span>+em.getPhone());</span><br><span class="line">		&#125;</span><br></pre></td></tr></table></figure></li>
+<li>运行结果：<br><img src="/2020/07/19/%E6%8C%81%E4%B9%85%E5%B1%82%E6%A1%86%E6%9E%B6%E2%80%94%E2%80%94mybatis/%E5%9B%BE2.PNG" alt="图2"></li>
+<li>注意查询多条语句时，我们依然将映射文件的返回值类型指定为JavaBean对象，而在接收结果的时候直接将结果强转为List<Employer>会报错，而先用List<Object>接收再通过遍历强转就可以解决这个问题<h2 id="更新语句"><a href="#更新语句" class="headerlink" title="更新语句"></a>更新语句</h2></Object></Employer></li>
+<li>employerMapper.xml:<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 删除操作 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">delete</span> <span class="attr">id</span> =<span class="string">"deleteByID"</span>&gt;</span></span><br><span class="line">	delete from emp where id = #&#123;id&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">delete</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>Test.class:<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = sqlsession.delete(<span class="string">"deleteByID"</span>,<span class="number">1</span>);</span><br><span class="line">		sqlsession.commit();</span><br><span class="line">		log.debug(<span class="string">"删除了ID为"</span>+i+<span class="string">"的员工"</span>);</span><br></pre></td></tr></table></figure></li>
+<li>运行结果：<br><img src="/2020/07/19/%E6%8C%81%E4%B9%85%E5%B1%82%E6%A1%86%E6%9E%B6%E2%80%94%E2%80%94mybatis/%E5%9B%BE3.PNG" alt="图3"></li>
+<li>注意delete之后必须sqlsession.commit()提交，更新或删除操作才会生效<h2 id="PS"><a href="#PS" class="headerlink" title="PS"></a>PS</h2></li>
+<li>这只是最简单的SQL操作，后续的学习中我将会深入学习基于Mybatis的动态SQL语句，一对一以及一对多关联查询</li>
 </ul>
 
       
@@ -238,7 +260,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">MVC</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">mybaites</a>
         		</li>
       		
 		</ul>
@@ -294,7 +316,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/07/16/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3MVC%E4%B9%8BDao%E5%B1%82/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/07/19/%E6%8C%81%E4%B9%85%E5%B1%82%E6%A1%86%E6%9E%B6%E2%80%94%E2%80%94mybatis/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -308,18 +330,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/07/17/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3MVC%E4%B9%8BService%E5%B1%82/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          深入理解MVC之Service层
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/07/15/JDBC%E8%BF%9E%E6%8E%A5MySQL%E5%AE%9E%E4%BE%8B/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">JDBC连接MySQL实例</div>
+    <a href="/2020/07/18/log4j/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">log4j</div>
       <i class="icon-circle-right"></i>
     </a>
   
