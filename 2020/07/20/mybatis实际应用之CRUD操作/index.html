@@ -6,27 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>GitHub+Hexo搭建个人博客 | 记录学习历程</title>
+  <title>mybatis实际应用之CRUD操作 | 记录学习历程</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一、环境的准备 安装Node.jscmd输入node -v和npm -v查看版本号确定是否安装成功 安装git,360软件商店就有，也可以自行搜索验证版本信息git --version 使用Node.js自带的包管理器npm下载淘宝的镜像源cnpm，后续使用cnpm下载可以提高下载速度cmd中输入：npm install -g cnpm --registry即可，等待下载完成输入：cnpm -v">
+  <meta name="description" content="建立项目结构 导入相关jar包后，建立以下目录结构：">
 <meta property="og:type" content="article">
-<meta property="og:title" content="GitHub+Hexo搭建个人博客">
-<meta property="og:url" content="http://yoursite.com/2020/07/14/GitHub-Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/index.html">
+<meta property="og:title" content="mybatis实际应用之CRUD操作">
+<meta property="og:url" content="http://yoursite.com/2020/07/20/mybatis%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8%E4%B9%8BCRUD%E6%93%8D%E4%BD%9C/index.html">
 <meta property="og:site_name" content="记录学习历程">
-<meta property="og:description" content="一、环境的准备 安装Node.jscmd输入node -v和npm -v查看版本号确定是否安装成功 安装git,360软件商店就有，也可以自行搜索验证版本信息git --version 使用Node.js自带的包管理器npm下载淘宝的镜像源cnpm，后续使用cnpm下载可以提高下载速度cmd中输入：npm install -g cnpm --registry即可，等待下载完成输入：cnpm -v">
+<meta property="og:description" content="建立项目结构 导入相关jar包后，建立以下目录结构：">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://yoursite.com/2020/07/14/GitHub-Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/%E5%9B%BE1.PNG">
-<meta property="og:image" content="http://yoursite.com/2020/07/14/GitHub-Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/%E5%9B%BE2.PNG">
-<meta property="og:image" content="http://yoursite.com/2020/07/14/GitHub-Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/%E5%9B%BE3.PNG">
-<meta property="og:image" content="http://yoursite.com/2020/07/14/GitHub-Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/%E5%9B%BE4.PNG">
-<meta property="og:image" content="http://yoursite.com/2020/07/14/GitHub-Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/%E5%9B%BE5.PNG">
-<meta property="article:published_time" content="2020-07-13T23:36:24.000Z">
-<meta property="article:modified_time" content="2020-07-15T03:04:57.153Z">
+<meta property="og:image" content="http://yoursite.com/2020/07/20/mybatis%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8%E4%B9%8BCRUD%E6%93%8D%E4%BD%9C/%E5%9B%BE1.PNG">
+<meta property="og:image" content="http://yoursite.com/2020/07/20/mybatis%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8%E4%B9%8BCRUD%E6%93%8D%E4%BD%9C/%E5%9B%BE2.PNG">
+<meta property="article:published_time" content="2020-07-19T23:53:35.000Z">
+<meta property="article:modified_time" content="2020-07-20T02:31:06.114Z">
 <meta property="article:author" content="无名小卒鸡大宝">
-<meta property="article:tag" content="Hexo">
-<meta property="article:tag" content="博客搭建">
+<meta property="article:tag" content="JAVA">
+<meta property="article:tag" content="mybatis">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/2020/07/14/GitHub-Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/%E5%9B%BE1.PNG">
+<meta name="twitter:image" content="http://yoursite.com/2020/07/20/mybatis%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8%E4%B9%8BCRUD%E6%93%8D%E4%BD%9C/%E5%9B%BE1.PNG">
   
     <link rel="alternative" href="/atom.xml" title="记录学习历程" type="application/atom+xml">
   
@@ -159,65 +156,43 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-GitHub-Hexo搭建个人博客" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-mybatis实际应用之CRUD操作" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      GitHub+Hexo搭建个人博客
+      mybatis实际应用之CRUD操作
     </h1>
   
 
         
-        <a href="/2020/07/14/GitHub-Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" class="archive-article-date">
-  	<time datetime="2020-07-13T23:36:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-14</time>
+        <a href="/2020/07/20/mybatis%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8%E4%B9%8BCRUD%E6%93%8D%E4%BD%9C/" class="archive-article-date">
+  	<time datetime="2020-07-19T23:53:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-20</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <hr>
-<h2 id="一、环境的准备"><a href="#一、环境的准备" class="headerlink" title="一、环境的准备"></a>一、环境的准备</h2><ul>
-<li>安装<a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node.js</a><br>cmd输入<code>node -v</code>和<code>npm -v</code>查看版本号确定是否安装成功</li>
-<li>安装git,360软件商店就有，也可以自行搜索<br>验证版本信息<code>git --version</code></li>
-<li>使用Node.js自带的包管理器npm下载淘宝的镜像源cnpm，后续使用cnpm下载可以提高下载速度<br>cmd中输入：<code>npm install -g cnpm --registry</code>即可，等待下载完成输入：<code>cnpm -v</code>显示版本号，安装成功</li>
-<li>接下来用cnpm安装hexo框架<br>cmd中输入：<code>cnpm install -g hexo-cli</code><br>下载完成后输入<code>cnpm -v</code>查看版本号，验证是否安装成功<a id="more"></a>
-</li>
-</ul>
-<hr>
-<h2 id="二、创建本地测试"><a href="#二、创建本地测试" class="headerlink" title="二、创建本地测试"></a>二、创建本地测试</h2><ul>
-<li>在磁盘中建立文件夹并命名，以后的操作全部基于此文件夹，如搭建过程中遇到错误想推倒重来，直接删除此文件夹重新创建即可</li>
-<li>cmd中进入创建好的文件夹（我这里叫blog），然后输入<code>hexo init</code>然后等待系统为我们在此文件夹创建好hexo框架，进入文件管理系统可以看见自动生成了许多文件。注意执行此步骤前务必配置好git</li>
-<li>还是这个文件夹，cmd中输入<code>hexo s</code>即可启动hexo，可以看见系统自动为我们生成了一个地址<br><img src="/2020/07/14/GitHub-Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/%E5%9B%BE1.PNG" alt="hexo启动"><br>浏览器中输入这个地址就可以看到系统自动为我们创建好的博客页面，并且有一篇自动创建的文章</li>
-<li>创建的每一篇博客都保存在\source_posts下，默认有一篇hello-world.md的博客<br>回到cmd中进入我们的博客文件夹blog（注意不是_posts）输入<code>hexo n 我的第一篇博客</code>创建我们的第一篇博客。</li>
-<li>我们的博客是保存在markdown文件中的，对博客内容的编辑，网上有很多工具可以使用，例如用cutemarked工具打开”我的第一篇博客.md”随便输入一些内容，保存后退出</li>
-<li>还是blog目录下，<code>hexo s</code>启动，可以看到我们编辑的新博客已经出现在浏览器中了，如果有问题的话可以先<code>hexo clean</code>清理一下，再启动</li>
-</ul>
-<hr>
-<h2 id="三、创建GitHub仓库"><a href="#三、创建GitHub仓库" class="headerlink" title="三、创建GitHub仓库"></a>三、创建GitHub仓库</h2><ul>
-<li>登录github<br><img src="/2020/07/14/GitHub-Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/%E5%9B%BE2.PNG" alt="hexo启动"><br>记住这个用户名和密码，后面也会用到</li>
-<li>右上角新建仓库<br><img src="/2020/07/14/GitHub-Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/%E5%9B%BE3.PNG" alt="hexo启动">  </li>
-<li>仓库名称一定要按下图的格式创建，涂掉的部分是你登录时的用户名<br><img src="/2020/07/14/GitHub-Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/%E5%9B%BE4.PNG" alt="hexo启动"><br>点击Create按钮创建仓库，成功后可以看到一个SSH格式的地址<a href="http://github.com/xxx.github.io.git" target="_blank" rel="noopener">http://github.com/xxx.github.io.git</a><br>这个界面暂时不要关闭，后续会用到这个地址</li>
-</ul>
-<hr>
-<h2 id="四、部署到远端"><a href="#四、部署到远端" class="headerlink" title="四、部署到远端"></a>四、部署到远端</h2><ul>
-<li>回到我们的cmd输入<code>cnpm install --save hexo-deployer-git</code>安装一下插件</li>
-<li>到文件系统中找到一个_config.yml的文件，这是一个非常重要的配置文件<br>我用的sublime_text.exe这个工具打开的yml文件，这个工具网上可以下载到，貌似记事本也可以打开哈哈。</li>
-<li>打开_config.yml文件后，最下面有个deploy的属性，按照下面的格式来写<br><img src="/2020/07/14/GitHub-Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/%E5%9B%BE5.PNG" alt="hexo启动"><br>注意冒号后面有个英文空格<br>git不加单引号貌似也可以，repo里面就是创建GitHub仓库时SSh的地址</li>
-<li>在启动前我们需要配置一下git的用户名和邮箱<br>用你的GitHub用户名的账号名和邮箱哦<br><code>config --global user.name youname</code><br><code>config --global user.email youemail</code><br>输入完成后可以使用<code>git config --list</code>指令查看配置的值</li>
-<li>ok完成之后，在blog目录下，可以先清理一下<code>hexo clean</code>，使用<code>hexo d</code>向远端推送，过程中需要输入GitHub的账户和密码，此过程中可能出现错误，可自行百度</li>
-<li>推送成功后，打开浏览器输入地址<a href="https://xxx.github.io" target="_blank" rel="noopener">https://xxx.github.io</a><br>也就是SSH地址的后半部分即可看到自己的博客，实现远程访问了</li>
-</ul>
-<hr>
-<h2 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h2><ul>
-<li>至此，一个属于自己的个人博客就已经搭建好了，过程并不是十分困难，而且还有满满的成就感。不过听说大佬们都在QQ空间日志记录下学习过程哈哈哈哈  </li>
-<li>由于GitHub的服务器在海外，所以国内访问博客的速度会受限，不过可以通过gitee的方式搭建博客，速度很快，我以后可能会研究研究这个</li>
-<li>另外，如何更换默认主题、个性化设置、如何在博客中插入图片等，会在我后续的博客中推出，可以在左侧菜单栏\所有博客\中搜索<strong>Hexo</strong> </li>
-<li>附上哔哩哔哩的视频教程<a href="https://www.bilibili.com/video/BV1Yb411a7ty?from=search&seid=8393827684291073441" target="_blank" rel="noopener">手把手教你从0开始搭建自己的个人博客 |无坑版视频教程| hexo</a>  </li>
-<li>博客搭建过程中当然会遇到很多困难，不过我们不管遇到什么困难都不要怕，微笑着面对它，加油！！！奥利给！！！</li>
+        <h2 id="建立项目结构"><a href="#建立项目结构" class="headerlink" title="建立项目结构"></a>建立项目结构</h2><ul>
+<li>导入相关jar包后，建立以下目录结构：<br><img src="/2020/07/20/mybatis%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8%E4%B9%8BCRUD%E6%93%8D%E4%BD%9C/%E5%9B%BE1.PNG" alt="图1"><a id="more"></a>
+<h2 id="mybaits-config-xml"><a href="#mybaits-config-xml" class="headerlink" title="mybaits_config.xml"></a>mybaits_config.xml</h2></li>
+<li>当Mapper的数量较少时，我们可以直接指定路径：<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">"com/emmm/mapper/DepartMapper.xml"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">"com/emmm/mapper/EmpMapper.xml"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>当Mapper数量较多时可以使用包扫描的方法：<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 包扫描的方式 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span> = <span class="string">"com.emmm.mapper"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="EmpMapper-xml"><a href="#EmpMapper-xml" class="headerlink" title="EmpMapper.xml"></a>EmpMapper.xml</h2></li>
+<li>配置文件如下：<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">mapper</span></span></span><br><span class="line"><span class="meta">PUBLIC <span class="meta-string">"-//mybatis.org//DTD Mapper 3.0//EN"</span></span></span><br><span class="line"><span class="meta"><span class="meta-string">"http://mybatis.org/dtd/mybatis-3-mapper.dtd"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">namespace:命名空间</span></span><br><span class="line"><span class="comment">命名空间是与该xml文件相对应接口的包名加接口名</span></span><br><span class="line"><span class="comment"> --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">"com.emmm.mapper.EmpMapper"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">parameterType:指定参数类型</span></span><br><span class="line"><span class="comment">resultType：指定返回值类型(包名.类名)</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"selectAllByDid"</span> <span class="attr">resultType</span>=<span class="string">"com.emmm.model.EmpBean"</span>&gt;</span></span><br><span class="line">	select * from emp where d_id = #&#123;d_id&#125; and gender = #&#123;gender&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>对应接口文件：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">EmpMapper</span> </span>&#123;</span><br><span class="line">	<span class="comment">//查询所有部门ID为?的员工信息</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> List&lt;EmpBean&gt; <span class="title">selectAllByDid</span><span class="params">(@Param(<span class="string">"d_id"</span>)</span><span class="keyword">int</span> d_id,@<span class="title">Param</span><span class="params">(<span class="string">"gender"</span>)</span>String gender)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>需要注意的是，在传入两个及以上参数时，需要在接口方法中加上相应注解，列入@Param(“d_id”)。否则mybatis无法识别参数之间的匹配关系<h2 id="测试类及结果"><a href="#测试类及结果" class="headerlink" title="测试类及结果"></a>测试类及结果</h2></li>
+<li>测试类：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			<span class="comment">//1.加载mybatis核心配置文件</span></span><br><span class="line">			InputStream inputStrenm = Resources.getResourceAsStream(<span class="string">"mybatis-config.xml"</span>);</span><br><span class="line">			<span class="comment">//2.通过SqlSessionFactoryBuilder构建一个数据源</span></span><br><span class="line">			SqlSessionFactory sqlSessionFactory = <span class="keyword">new</span> SqlSessionFactoryBuilder().build(inputStrenm);</span><br><span class="line">			<span class="comment">//3.获取连接，Sqlsession相当于JDBC中的Connection</span></span><br><span class="line">			SqlSession sqlSession = sqlSessionFactory.openSession();</span><br><span class="line">			<span class="comment">//4.获取EmpMapper接口的实例</span></span><br><span class="line">			EmpMapper empMapper = sqlSession.getMapper(EmpMapper<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">			List&lt;EmpBean&gt; emp = empMapper.selectAllByDid(<span class="number">4</span>,<span class="string">"男"</span>);</span><br><span class="line">			<span class="keyword">for</span>(EmpBean a:emp)&#123;</span><br><span class="line">				log.debug(a.getName());</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">			<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">			e.printStackTrace();</span><br><span class="line">			log.debug(<span class="string">"连接失败"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></li>
+<li>结果：<br><img src="/2020/07/20/mybatis%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8%E4%B9%8BCRUD%E6%93%8D%E4%BD%9C/%E5%9B%BE2.PNG" alt="图2"><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2></li>
+<li>1.（原来的步骤，先开发ConnectionFactory）连接工厂</li>
+<li>2.核心配置文件mybatis-config.xml</li>
+<li>3.配置和每个对象关联的映射文件EmpMapper.xml,DepartMapper.xml….,同时应该有一个与其同名的接口</li>
+<li>4.做查询时通过SqlSession中的方法getMapper(“接口名.class”)获取该接口的实例</li>
+<li>5.调用该接口中的方法进行数据的增删改查</li>
+<li>6.JDBC中更新删除操作自动提交，使用mybatis时，需要手动提交才会生效:sqlsession.commit();</li>
 </ul>
 
       
@@ -253,11 +228,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hexo</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JAVA</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">博客搭建</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">mybatis</a>
         		</li>
       		
 		</ul>
@@ -313,7 +288,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/07/14/GitHub-Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/07/20/mybatis%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8%E4%B9%8BCRUD%E6%93%8D%E4%BD%9C/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -327,15 +302,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/07/15/Hexo%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%94%B9%E4%B8%BB%E9%A2%98%E4%B8%8E%E6%96%87%E7%AB%A0%E7%BC%96%E8%BE%91/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Hexo博客更改主题与文章编辑
-        
-      </div>
-    </a>
   
+    <a href="/2020/07/19/%E6%8C%81%E4%B9%85%E5%B1%82%E6%A1%86%E6%9E%B6%E2%80%94%E2%80%94mybatis/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">持久层框架——mybatis</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
