@@ -58,7 +58,7 @@
 			</ul>
 		</nav>
 		<nav>
-			共有8篇文章
+			共有10篇文章
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -148,6 +148,170 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-mybatis之动态SQL语句" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/21/mybatis%E4%B9%8B%E5%8A%A8%E6%80%81SQL%E8%AF%AD%E5%8F%A5/">mybatis之动态SQL语句</a>
+    </h1>
+  
+
+        
+        <a href="/2020/07/21/mybatis%E4%B9%8B%E5%8A%A8%E6%80%81SQL%E8%AF%AD%E5%8F%A5/" class="archive-article-date">
+  	<time datetime="2020-07-21T01:47:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<h2 id="动态SQL"><a href="#动态SQL" class="headerlink" title="动态SQL"></a>动态SQL</h2><p>mybatis的强大特性之一便是它的动态SQL。后端程序猿们一定体会到根据不同条件拼接SQL语句有多么痛苦。拼接的时候不能忘了必要的空格，还要注意省掉列名列表最后的逗号。利用动态SQL这一特性可以彻底摆脱这种痛苦。</p>
+        
+          <a class="article-more-a" href="/2020/07/21/mybatis%E4%B9%8B%E5%8A%A8%E6%80%81SQL%E8%AF%AD%E5%8F%A5/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JAVA</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">mybatis</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/21/mybatis%E4%B9%8B%E5%8A%A8%E6%80%81SQL%E8%AF%AD%E5%8F%A5/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-mybatis注解、别名及保存主键值" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/21/mybatis%E6%B3%A8%E8%A7%A3%E3%80%81%E5%88%AB%E5%90%8D%E5%8F%8A%E4%BF%9D%E5%AD%98%E4%B8%BB%E9%94%AE%E5%80%BC/">mybatis注解、别名及保存主键值</a>
+    </h1>
+  
+
+        
+        <a href="/2020/07/21/mybatis%E6%B3%A8%E8%A7%A3%E3%80%81%E5%88%AB%E5%90%8D%E5%8F%8A%E4%BF%9D%E5%AD%98%E4%B8%BB%E9%94%AE%E5%80%BC/" class="archive-article-date">
+  	<time datetime="2020-07-20T23:53:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<h2 id="注解的使用"><a href="#注解的使用" class="headerlink" title="注解的使用"></a>注解的使用</h2><ul>
+<li>当我们的SQL语句并不太复杂的时候，可以不通过..Mapper.xml文件来配置映射关系，可以通过在Mapper接口文件中添加注解的形式来实现：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">EmpMapper</span> </span>&#123;</span><br><span class="line">	<span class="meta">@Select</span>(<span class="string">"select * from emp where d_id = #&#123;d_id&#125; and gender = #&#123;gender&#125;"</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> List&lt;EmpBean&gt; <span class="title">selectAllByDid</span><span class="params">(@Param(<span class="string">"d_id"</span>)</span><span class="keyword">int</span> d_id,@<span class="title">Param</span><span class="params">(<span class="string">"gender"</span>)</span>String gender)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>增删改查的注解写法:@Select(),@Update(),@Insert(),@Delete()</li></ul>
+        
+          <a class="article-more-a" href="/2020/07/21/mybatis%E6%B3%A8%E8%A7%A3%E3%80%81%E5%88%AB%E5%90%8D%E5%8F%8A%E4%BF%9D%E5%AD%98%E4%B8%BB%E9%94%AE%E5%80%BC/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JAVA</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">mybatis</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/21/mybatis%E6%B3%A8%E8%A7%A3%E3%80%81%E5%88%AB%E5%90%8D%E5%8F%8A%E4%BF%9D%E5%AD%98%E4%B8%BB%E9%94%AE%E5%80%BC/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-mybatis实际应用之CRUD操作" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">

@@ -6,15 +6,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: log4j | 记录学习历程</title>
+  <title>mybatis之动态SQL语句 | 记录学习历程</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="记录学习历程">
-<meta property="og:url" content="http://yoursite.com/tags/log4j/index.html">
+  <meta name="description" content="动态SQLmybatis的强大特性之一便是它的动态SQL。后端程序猿们一定体会到根据不同条件拼接SQL语句有多么痛苦。拼接的时候不能忘了必要的空格，还要注意省掉列名列表最后的逗号。利用动态SQL这一特性可以彻底摆脱这种痛苦。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mybatis之动态SQL语句">
+<meta property="og:url" content="http://yoursite.com/2020/07/21/mybatis%E4%B9%8B%E5%8A%A8%E6%80%81SQL%E8%AF%AD%E5%8F%A5/index.html">
 <meta property="og:site_name" content="记录学习历程">
+<meta property="og:description" content="动态SQLmybatis的强大特性之一便是它的动态SQL。后端程序猿们一定体会到根据不同条件拼接SQL语句有多么痛苦。拼接的时候不能忘了必要的空格，还要注意省掉列名列表最后的逗号。利用动态SQL这一特性可以彻底摆脱这种痛苦。">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/2020/07/21/mybatis%E4%B9%8B%E5%8A%A8%E6%80%81SQL%E8%AF%AD%E5%8F%A5/%E5%9B%BE1.PNG">
+<meta property="og:image" content="http://yoursite.com/2020/07/21/mybatis%E4%B9%8B%E5%8A%A8%E6%80%81SQL%E8%AF%AD%E5%8F%A5/%E5%9B%BE2.PNG">
+<meta property="og:image" content="http://yoursite.com/2020/07/21/mybatis%E4%B9%8B%E5%8A%A8%E6%80%81SQL%E8%AF%AD%E5%8F%A5/%E5%9B%BE3.PNG">
+<meta property="article:published_time" content="2020-07-21T01:47:02.000Z">
+<meta property="article:modified_time" content="2020-07-21T03:52:18.829Z">
 <meta property="article:author" content="无名小卒鸡大宝">
+<meta property="article:tag" content="JAVA">
+<meta property="article:tag" content="mybatis">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/07/21/mybatis%E4%B9%8B%E5%8A%A8%E6%80%81SQL%E8%AF%AD%E5%8F%A5/%E5%9B%BE1.PNG">
   
     <link rel="alternative" href="/atom.xml" title="记录学习历程" type="application/atom+xml">
   
@@ -147,36 +157,94 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-mybatis之动态SQL语句" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/07/18/log4j/" class="archive-article-date">
-  	<time datetime="2020-07-17T23:11:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-18</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/07/18/log4j/">log4j</a>
+    <h1 class="article-title" itemprop="name">
+      mybatis之动态SQL语句
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2020/07/21/mybatis%E4%B9%8B%E5%8A%A8%E6%80%81SQL%E8%AF%AD%E5%8F%A5/" class="archive-article-date">
+  	<time datetime="2020-07-21T01:47:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<h2 id="动态SQL"><a href="#动态SQL" class="headerlink" title="动态SQL"></a>动态SQL</h2><p>mybatis的强大特性之一便是它的动态SQL。后端程序猿们一定体会到根据不同条件拼接SQL语句有多么痛苦。拼接的时候不能忘了必要的空格，还要注意省掉列名列表最后的逗号。利用动态SQL这一特性可以彻底摆脱这种痛苦。</p>
+<a id="more"></a>
+<ul>
+<li>if</li>
+<li>choose(when,otherwise)</li>
+<li>trim(where,set)</li>
+<li>foreach</li>
+</ul>
+<hr>
+<h2 id="判断的使用"><a href="#判断的使用" class="headerlink" title="判断的使用"></a>判断的使用</h2><ul>
+<li>在Mapper.xml文件中：<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"selectEmpInfo"</span> <span class="attr">resultType</span>=<span class="string">"EmpBean"</span>&gt;</span></span><br><span class="line">	select * from emp where gender = #&#123;gender&#125; and d_id = #&#123;d_id&#125;</span><br><span class="line">	<span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"name !=null and name !=''"</span>&gt;</span></span><br><span class="line">		and name = #&#123;name&#125;</span><br><span class="line">	<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>Test.class:<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">EmpBean em = empMapper.selectEmpInfo(<span class="string">"张飞"</span>,<span class="string">"男"</span>, <span class="number">1</span>);</span><br><span class="line">log.debug(em.toString());</span><br></pre></td></tr></table></figure></li>
+<li>本例中传入的参数”张飞”不为空且不等于空字符串，满足了if条件，所以mybatis自动为我们拼接了如下语句：<br><img src="/2020/07/21/mybatis%E4%B9%8B%E5%8A%A8%E6%80%81SQL%E8%AF%AD%E5%8F%A5/%E5%9B%BE1.PNG" alt="图1"></li>
+</ul>
+<hr>
+<h2 id="多重判断语句"><a href="#多重判断语句" class="headerlink" title="多重判断语句"></a>多重判断语句</h2><ul>
+<li>Mapper.xml文件中<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--根据输入参数查询指定信息--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"selectEmpInfo"</span> <span class="attr">resultType</span>=<span class="string">"EmpBean"</span>&gt;</span></span><br><span class="line">	select * from emp</span><br><span class="line">	<span class="tag">&lt;<span class="name">where</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"name != null and name != ''"</span>&gt;</span></span><br><span class="line">			and name = #&#123;name&#125;</span><br><span class="line">		<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"gender != null and gender != ''"</span>&gt;</span></span><br><span class="line">			and gender = #&#123;gender&#125;</span><br><span class="line">		<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"d_id != null and d_id != 0"</span>&gt;</span></span><br><span class="line">			and d_id = #&#123;d_id&#125;</span><br><span class="line">		<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">where</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>Test.class:<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">List&lt;EmpBean&gt; em = empMapper.selectEmpInfo(<span class="keyword">null</span>,<span class="string">"男"</span>, <span class="number">0</span>);</span><br><span class="line">			<span class="keyword">for</span>(EmpBean e:em)&#123;</span><br><span class="line">				log.debug(e.toString());</span><br><span class="line">			&#125;</span><br></pre></td></tr></table></figure></li>
+<li>本例中，我们将name参数传入空，及d_id参数传入0,mybatis为我们拼接的SQL语句如下：<br><img src="/2020/07/21/mybatis%E4%B9%8B%E5%8A%A8%E6%80%81SQL%E8%AF%AD%E5%8F%A5/%E5%9B%BE2.PNG" alt="图2"></li>
+<li>需要注意的是，如果<code>&lt;where&gt;</code>里的if皆不生效，那么where语句也不会被拼接。where语句拼接后会自动删除第一个”and”,避免出现”where and name = ?”的错误</li>
+</ul>
+<hr>
+<h2 id="循环语句"><a href="#循环语句" class="headerlink" title="循环语句"></a>循环语句</h2><ul>
+<li>Mapper.xml:<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">delete</span> <span class="attr">id</span>=<span class="string">"deleteEmpInfo"</span>&gt;</span></span><br><span class="line">	delete from emp where id in</span><br><span class="line">	<span class="tag">&lt;<span class="name">foreach</span> <span class="attr">item</span>=<span class="string">"id"</span> <span class="attr">collection</span>=<span class="string">"deleteArray"</span> <span class="attr">open</span> = <span class="string">"("</span> <span class="attr">separator</span>=<span class="string">","</span> <span class="attr">close</span>=<span class="string">")"</span>&gt;</span></span><br><span class="line">		#&#123;id&#125;</span><br><span class="line">	<span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">delete</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>Test.class:<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] a = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line">			empMapper.deleteEmpInfo(a);</span><br></pre></td></tr></table></figure></li>
+<li>本例中传入的参数是数组，注意Mapper.class中要使用注解声明：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">EmpMapper</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">deleteEmpInfo</span><span class="params">(@Param(<span class="string">"deleteArray"</span>)</span><span class="keyword">int</span>[] deleteArray)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>运行后mybatis拼接的SQL语句：<br><img src="/2020/07/21/mybatis%E4%B9%8B%E5%8A%A8%E6%80%81SQL%E8%AF%AD%E5%8F%A5/%E5%9B%BE3.PNG" alt="图3"></li>
+</ul>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你耐心看完<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/zhifubao.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/weixin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -186,25 +254,61 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">log4j</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">mybatis</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2020/07/21/mybatis%E6%B3%A8%E8%A7%A3%E3%80%81%E5%88%AB%E5%90%8D%E5%8F%8A%E4%BF%9D%E5%AD%98%E4%B8%BB%E9%94%AE%E5%80%BC/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">mybatis注解、别名及保存主键值</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -227,9 +331,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,
