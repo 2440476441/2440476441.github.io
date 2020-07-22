@@ -6,15 +6,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2020/7 | 记录学习历程</title>
+  <title>mybatis之关联查询 | 记录学习历程</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="记录学习历程">
-<meta property="og:url" content="http://yoursite.com/archives/2020/07/index.html">
+  <meta name="description" content="resultMap手动映射 在进行关联查询前我们首先需要明白resultMap的用法，当我们在Mapper.xml文件中写SQL语句时通常有两种方式指定返回值类型一种是resultType(自动映射)一种是resultMap(手动映射)。当我们的实体bean中的属性名与数据库列名不一致时，mybatis无法为我们自动映射，这时需要resultMap手动映射：数据库中的emp表结构：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mybatis之关联查询">
+<meta property="og:url" content="http://yoursite.com/2020/07/22/mybatis%E4%B9%8B%E5%85%B3%E8%81%94%E6%9F%A5%E8%AF%A2/index.html">
 <meta property="og:site_name" content="记录学习历程">
+<meta property="og:description" content="resultMap手动映射 在进行关联查询前我们首先需要明白resultMap的用法，当我们在Mapper.xml文件中写SQL语句时通常有两种方式指定返回值类型一种是resultType(自动映射)一种是resultMap(手动映射)。当我们的实体bean中的属性名与数据库列名不一致时，mybatis无法为我们自动映射，这时需要resultMap手动映射：数据库中的emp表结构：">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/2020/07/22/mybatis%E4%B9%8B%E5%85%B3%E8%81%94%E6%9F%A5%E8%AF%A2/%E5%9B%BE1.PNG">
+<meta property="og:image" content="http://yoursite.com/2020/07/22/mybatis%E4%B9%8B%E5%85%B3%E8%81%94%E6%9F%A5%E8%AF%A2/%E5%9B%BE1.PNG">
+<meta property="og:image" content="http://yoursite.com/2020/07/22/mybatis%E4%B9%8B%E5%85%B3%E8%81%94%E6%9F%A5%E8%AF%A2/%E5%9B%BE2.PNG">
+<meta property="article:published_time" content="2020-07-22T03:40:07.000Z">
+<meta property="article:modified_time" content="2020-07-22T05:18:06.529Z">
 <meta property="article:author" content="无名小卒鸡大宝">
+<meta property="article:tag" content="JAVA">
+<meta property="article:tag" content="mybatis">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/07/22/mybatis%E4%B9%8B%E5%85%B3%E8%81%94%E6%9F%A5%E8%AF%A2/%E5%9B%BE1.PNG">
   
     <link rel="alternative" href="/atom.xml" title="记录学习历程" type="application/atom+xml">
   
@@ -147,36 +157,84 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-mybatis之关联查询" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      mybatis之关联查询
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/07/22/mybatis%E4%B9%8B%E5%85%B3%E8%81%94%E6%9F%A5%E8%AF%A2/" class="archive-article-date">
+
+        
+        <a href="/2020/07/22/mybatis%E4%B9%8B%E5%85%B3%E8%81%94%E6%9F%A5%E8%AF%A2/" class="archive-article-date">
   	<time datetime="2020-07-22T03:40:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-22</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/07/22/mybatis%E4%B9%8B%E5%85%B3%E8%81%94%E6%9F%A5%E8%AF%A2/">mybatis之关联查询</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<h2 id="resultMap手动映射"><a href="#resultMap手动映射" class="headerlink" title="resultMap手动映射"></a>resultMap手动映射</h2><ul>
+<li>在进行关联查询前我们首先需要明白resultMap的用法，当我们在Mapper.xml文件中写SQL语句时通常有两种方式指定返回值类型一种是resultType(自动映射)一种是resultMap(手动映射)。当我们的实体bean中的属性名与数据库列名不一致时，mybatis无法为我们自动映射，这时需要resultMap手动映射：<br>数据库中的emp表结构：<a id="more"></a><br><img src="/2020/07/22/mybatis%E4%B9%8B%E5%85%B3%E8%81%94%E6%9F%A5%E8%AF%A2/%E5%9B%BE1.PNG" alt="图1"><br>EmpBean中的表结构：<br>private String name;<br>private String gender;<br>private int d_id;<br>private int id;</li>
+<li>EmpMapper.xml:<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- resultMap手动映射 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"selectEmpByID"</span> <span class="attr">resultMap</span>=<span class="string">"map1"</span>&gt;</span></span><br><span class="line">	select * from emp where eid = #&#123;id&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">	type:"selectEmpByID"要返回的数据类型</span></span><br><span class="line"><span class="comment">	id:唯一标识</span></span><br><span class="line"><span class="comment">	property:实体Bean中的哪一个属性</span></span><br><span class="line"><span class="comment">	column:数据库表中的哪一列</span></span><br><span class="line"><span class="comment"> --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">type</span>=<span class="string">"EmpBean"</span> <span class="attr">id</span>=<span class="string">"map1"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">"d_id"</span> <span class="attr">column</span>=<span class="string">"d_id"</span>/&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">"id"</span> <span class="attr">column</span>=<span class="string">"eid"</span>/&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">"name"</span> <span class="attr">column</span>=<span class="string">"ename"</span>/&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">"gender"</span> <span class="attr">column</span>=<span class="string">"egender"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="一对一关联查询"><a href="#一对一关联查询" class="headerlink" title="一对一关联查询"></a>一对一关联查询</h2></li>
+<li>一对一：查询id为？的员工信息及其部门信息</li>
+<li>数据库结构：<br><br>emp表：<br><img src="/2020/07/22/mybatis%E4%B9%8B%E5%85%B3%E8%81%94%E6%9F%A5%E8%AF%A2/%E5%9B%BE1.PNG" alt="图1"><br>depart表：<br><img src="/2020/07/22/mybatis%E4%B9%8B%E5%85%B3%E8%81%94%E6%9F%A5%E8%AF%A2/%E5%9B%BE2.PNG" alt="图2"></li>
+<li>实体Bean：<br>EmpBean：<br>private String name;<br>private String gender;<br>private int d_id;<br>private int id;<br>private DepartBean depart;<br>DepartBean:<br>private int d_id;<br>private String name;</li>
+<li>EmpMapper.xml:<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--一对一：查询id为？的员工信息及其部门信息--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"select01"</span> <span class="attr">resultMap</span>=<span class="string">"map1"</span>&gt;</span></span><br><span class="line">	select * from emp where eid = #&#123;id&#125;;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">	association:返回值是单条信息时使用</span></span><br><span class="line"><span class="comment">	select = "com.emmm.mapper.DepartMapper.selectByDiD"：包名+类名</span></span><br><span class="line"><span class="comment"> --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">type</span>=<span class="string">"EmpBean"</span> <span class="attr">id</span>=<span class="string">"map1"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">"d_id"</span> <span class="attr">column</span>=<span class="string">"d_id"</span>/&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">"id"</span> <span class="attr">column</span>=<span class="string">"eid"</span>/&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">"name"</span> <span class="attr">column</span>=<span class="string">"ename"</span>/&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">"gender"</span> <span class="attr">column</span>=<span class="string">"egender"</span>/&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">association</span> <span class="attr">property</span>=<span class="string">"depart"</span> <span class="attr">column</span>=<span class="string">"d_id"</span> <span class="attr">select</span> = <span class="string">"com.emmm.mapper.DepartMapper.selectByDiD"</span>&gt;</span><span class="tag">&lt;/<span class="name">association</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>DepartMapper.xml:<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"selectByDiD"</span> <span class="attr">resultType</span>=<span class="string">"DepartBean"</span>&gt;</span></span><br><span class="line">	select * from depart where d_id = #&#123;d_id&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="一对多关联查询"><a href="#一对多关联查询" class="headerlink" title="一对多关联查询"></a>一对多关联查询</h2></li>
+<li>一对多：查询所有部门名称为？的员工信息</li>
+<li>DepartBean:<br>private int d_id;<br>private String name;<br>private List<EmpBean> empList;</EmpBean></li>
+<li>EmpBean:<br>private String name;<br>private String gender;<br>private int d_id;<br>private int id;</li>
+<li>DepartMapper.xml<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">collection:适用于返回类型是多条记录</span></span><br><span class="line"><span class="comment"> --&gt;</span></span><br><span class="line"><span class="comment">&lt;!--一对多：查询所有部门名称为？的员工信息--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"select02"</span> <span class="attr">resultMap</span>=<span class="string">"map2"</span>&gt;</span></span><br><span class="line">	select * from depart where name = #&#123;name&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">type</span>=<span class="string">"DepartBean"</span> <span class="attr">id</span>=<span class="string">"map2"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">collection</span> <span class="attr">property</span>=<span class="string">"empList"</span> <span class="attr">column</span>=<span class="string">"d_id"</span> <span class="attr">select</span>=<span class="string">"com.emmm.mapper.EmpMapper.selectEmByID"</span>&gt;</span><span class="tag">&lt;/<span class="name">collection</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>EmpMapper.xml:<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"selectEmByID"</span> <span class="attr">resultMap</span>=<span class="string">"tempmap"</span>&gt;</span></span><br><span class="line">	select * from emp where d_id = #&#123;d_id&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">type</span>=<span class="string">"EmpBean"</span> <span class="attr">id</span>=<span class="string">"tempmap"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">"d_id"</span> <span class="attr">column</span>=<span class="string">"d_id"</span>/&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">"id"</span> <span class="attr">column</span>=<span class="string">"eid"</span>/&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">"name"</span> <span class="attr">column</span>=<span class="string">"ename"</span>/&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">"gender"</span> <span class="attr">column</span>=<span class="string">"egender"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2></li>
+<li>多表关联查询注意点<br>1）映射类型为手动映射resultMap<br>2）自定义一个映射类型，如果返回值是一条信息，那么使用association,如果是多条信息那么用collection</li>
+</ul>
 
-        <div class="article-info info-on-right">
-          
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你耐心看完<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/zhifubao.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/weixin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -192,400 +250,54 @@
 		</ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/07/21/mybatis%E4%B9%8B%E5%8A%A8%E6%80%81SQL%E8%AF%AD%E5%8F%A5/" class="archive-article-date">
-  	<time datetime="2020-07-21T01:47:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-21</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/07/21/mybatis%E4%B9%8B%E5%8A%A8%E6%80%81SQL%E8%AF%AD%E5%8F%A5/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">mybatis之动态SQL语句</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/07/21/mybatis%E4%B9%8B%E5%8A%A8%E6%80%81SQL%E8%AF%AD%E5%8F%A5/">mybatis之动态SQL语句</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JAVA</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">mybatis</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/07/21/mybatis%E6%B3%A8%E8%A7%A3%E3%80%81%E5%88%AB%E5%90%8D%E5%8F%8A%E4%BF%9D%E5%AD%98%E4%B8%BB%E9%94%AE%E5%80%BC/" class="archive-article-date">
-  	<time datetime="2020-07-20T23:53:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/07/21/mybatis%E6%B3%A8%E8%A7%A3%E3%80%81%E5%88%AB%E5%90%8D%E5%8F%8A%E4%BF%9D%E5%AD%98%E4%B8%BB%E9%94%AE%E5%80%BC/">mybatis注解、别名及保存主键值</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JAVA</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">mybatis</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/07/20/mybatis%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8%E4%B9%8BCRUD%E6%93%8D%E4%BD%9C/" class="archive-article-date">
-  	<time datetime="2020-07-19T23:53:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/07/20/mybatis%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8%E4%B9%8BCRUD%E6%93%8D%E4%BD%9C/">mybatis实际应用之CRUD操作</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JAVA</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">mybatis</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/07/19/%E6%8C%81%E4%B9%85%E5%B1%82%E6%A1%86%E6%9E%B6%E2%80%94%E2%80%94mybatis/" class="archive-article-date">
-  	<time datetime="2020-07-18T23:34:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/07/19/%E6%8C%81%E4%B9%85%E5%B1%82%E6%A1%86%E6%9E%B6%E2%80%94%E2%80%94mybatis/">持久层框架——mybatis</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JAVA</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">mybatis</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/07/18/log4j/" class="archive-article-date">
-  	<time datetime="2020-07-17T23:11:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/07/18/log4j/">log4j</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JAVA</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">log4j</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/07/17/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3MVC%E4%B9%8BService%E5%B1%82/" class="archive-article-date">
-  	<time datetime="2020-07-16T23:45:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-17</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/07/17/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3MVC%E4%B9%8BService%E5%B1%82/">深入理解MVC之Service层</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JAVA</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">MVC</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/07/16/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3MVC%E4%B9%8BDao%E5%B1%82/" class="archive-article-date">
-  	<time datetime="2020-07-16T10:21:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/07/16/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3MVC%E4%B9%8BDao%E5%B1%82/">深入理解MVC之Dao层</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JAVA</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">MVC</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/07/15/JDBC%E8%BF%9E%E6%8E%A5MySQL%E5%AE%9E%E4%BE%8B/" class="archive-article-date">
-  	<time datetime="2020-07-15T13:06:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/07/15/JDBC%E8%BF%9E%E6%8E%A5MySQL%E5%AE%9E%E4%BE%8B/">JDBC连接MySQL实例</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JAVA</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JDBC</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/07/15/Hexo%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%94%B9%E4%B8%BB%E9%A2%98%E4%B8%8E%E6%96%87%E7%AB%A0%E7%BC%96%E8%BE%91/" class="archive-article-date">
-  	<time datetime="2020-07-14T23:27:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/07/15/Hexo%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%94%B9%E4%B8%BB%E9%A2%98%E4%B8%8E%E6%96%87%E7%AB%A0%E7%BC%96%E8%BE%91/">Hexo博客更改主题与文章编辑</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hexo</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">博客搭建</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2020/07/page/2/">2</a><a class="extend next" rel="next" href="/archives/2020/07/page/2/">Next &amp;raquo;</a>
-    </nav>
   
 
 
@@ -609,8 +321,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,

@@ -58,7 +58,7 @@
 			</ul>
 		</nav>
 		<nav>
-			共有10篇文章
+			共有11篇文章
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -148,6 +148,88 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-mybatis之关联查询" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/22/mybatis%E4%B9%8B%E5%85%B3%E8%81%94%E6%9F%A5%E8%AF%A2/">mybatis之关联查询</a>
+    </h1>
+  
+
+        
+        <a href="/2020/07/22/mybatis%E4%B9%8B%E5%85%B3%E8%81%94%E6%9F%A5%E8%AF%A2/" class="archive-article-date">
+  	<time datetime="2020-07-22T03:40:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<h2 id="resultMap手动映射"><a href="#resultMap手动映射" class="headerlink" title="resultMap手动映射"></a>resultMap手动映射</h2><ul>
+<li>在进行关联查询前我们首先需要明白resultMap的用法，当我们在Mapper.xml文件中写SQL语句时通常有两种方式指定返回值类型一种是resultType(自动映射)一种是resultMap(手动映射)。当我们的实体bean中的属性名与数据库列名不一致时，mybatis无法为我们自动映射，这时需要resultMap手动映射：<br>数据库中的emp表结构：</li></ul>
+        
+          <a class="article-more-a" href="/2020/07/22/mybatis%E4%B9%8B%E5%85%B3%E8%81%94%E6%9F%A5%E8%AF%A2/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JAVA</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">mybatis</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/22/mybatis%E4%B9%8B%E5%85%B3%E8%81%94%E6%9F%A5%E8%AF%A2/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-mybatis之动态SQL语句" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -900,91 +982,10 @@
 
 
   
-    <article id="post-GitHub-Hexo搭建个人博客" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/14/GitHub-Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">GitHub+Hexo搭建个人博客</a>
-    </h1>
-  
-
-        
-        <a href="/2020/07/14/GitHub-Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" class="archive-article-date">
-  	<time datetime="2020-07-13T23:36:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <hr>
-<h2 id="一、环境的准备"><a href="#一、环境的准备" class="headerlink" title="一、环境的准备"></a>一、环境的准备</h2><ul>
-<li>安装<a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node.js</a><br>cmd输入<code>node -v</code>和<code>npm -v</code>查看版本号确定是否安装成功</li>
-<li>安装git,360软件商店就有，也可以自行搜索<br>验证版本信息<code>git --version</code></li>
-<li>使用Node.js自带的包管理器npm下载淘宝的镜像源cnpm，后续使用cnpm下载可以提高下载速度<br>cmd中输入：<code>npm install -g cnpm --registry</code>即可，等待下载完成输入：<code>cnpm -v</code>显示版本号，安装成功</li>
-<li>接下来用cnpm安装hexo框架<br>cmd中输入：<code>cnpm install -g hexo-cli</code><br>下载完成后输入<code>cnpm -v</code>查看版本号，验证是否安装成功</li></ul>
-        
-          <a class="article-more-a" href="/2020/07/14/GitHub-Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hexo</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">博客搭建</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/07/14/GitHub-Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+    </nav>
   
 
 
